@@ -1,0 +1,20 @@
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: QuayEcosystem
+metadata:
+  name: quay-registry
+  namespace: quay-enterprise
+spec:
+  quay:
+    imagePullSecretName: redhat-pull-secret
+    keepConfigDeployment: true
+    registryStorage:
+      persistentVolumeAccessModes:
+        - ReadWriteOnce
+      persistentVolumeSize: 10Gi
+    hostname: quay.apps.ocp4.rh.lab
+    configHostname: quay-config.apps.ocp4.rh.lab
+    database:
+      volumeSize: 10Gi
+  clair:
+    enabled: true
+    imagePullSecretName: redhat-pull-secret

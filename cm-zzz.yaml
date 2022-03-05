@@ -1,0 +1,950 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config/>
+    <context:component-scan base-package="ru.smsoft.etp.front.rest"/>
+    <bean class="ru.smsoft.etp.front.rest.dao.Dao" id="dao">
+        <property name="dataSource" ref="dataSourceProftech"/>
+        <qualifier value="dataSourceProftech"/>
+    </bean>
+    <!--Parent connection property-->
+    <bean abstract="true" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close" id="dataSourceParent">
+        <property name="dataSourceClassName" value="org.postgresql.ds.PGSimpleDataSource"/>
+        <property name="connectionTimeout" value="5000"/>
+        <property name="maximumPoolSize" value="5"/>
+        <property name="readOnly" value="true"/>
+    </bean>
+    <!-- Moslicense -->
+    <!--<bean id="dataSourceMoslicense" parent="dataSourceParent">-->
+    <!--<property name="dataSourceProperties">-->
+    <!--<props>-->
+    <!--<prop key="
+    <!--<prop key="
+    <!--<prop key="
+    <!--</props>-->
+    <!--</property>-->
+    <!--</bean>-->
+    <!--<bean id="serviceDataMoslicense" class="ru.smsoft.etp.front.rest.model.ServiceData" scope="prototype">-->
+    <!--<property name="dataSource" ref="dataSourceMoslicense"/>-->
+    <!--<property name="dbTable" value="reestr"/>-->
+    <!--<property name="pagination" value="false"/>-->
+    <!--<property name="pageSize" value=""/>-->
+    <!--<property name="urlParams" value="licenseNum,licenseSer"/>-->
+    <!--<property name="dbColumns" value="license_num,license_ser"/>-->
+    <!--<property name="jsonFields" value="licensenumber,licenseseria"/>-->
+    <!--<property name="dbSelectColumns" value="inn,license_num,license_ser,numberinreestr"/>-->
+    <!--<property name="fieldsWithArrayType" value=""/>-->
+    <!--<property name="dbSqlLikeColumns" value=""/>-->
+    <!--<property name="jsonRoot" value=""/>-->
+    <!--<property name="dbNotStringColumns" value=""/>-->
+    <!--<property name="dbOrderByAscColumns" value=""/>-->
+    <!--<property name="dbOrderByDescColumns" value=""/>-->
+    <!--</bean>-->
+    <!-- Proftech -->
+    <bean id="dataSourceProftech" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <!---DouFront-->
+    <bean id="dataSourceDoufront" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <!--Doubenefits_list-->
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataDoufrontbenefits_list" scope="prototype">
+        <property name="dataSource" ref="dataSourceDoufront"/>
+        <!--<property name="dbTable" value="searchou"/>-->
+        <property name="dbTable" value="benefits_list"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value=""/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="code,value"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="Benefits"/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!---UikFront-->
+    <bean id="dataSourceEsnsi" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataUik_list" scope="prototype">
+        <property name="dataSource" ref="dataSourceEsnsi"/>
+        <property name="dbTable" value="uik2_vw"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value=""/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="regioncode,nameuikregion,uiknum,addressuik,countrycode"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="Uiks"/>
+        <property name="dbNotStringColumns" value="regioncode,uiknum,countrycode"/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!---zags_status-->
+    <bean id="dataSourceZagsstatus" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <!---SKU-->
+    <bean id="dataSourceSku" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <!--Zags_list-->
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataZags_list" scope="prototype">
+        <property name="dataSource" ref="dataSourceZagsstatus"/>
+        <!--<property name="dbTable" value="searchou"/>-->
+        <property name="dbTable" value="status_zags"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="1"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="serviceNumber,statusCode,created"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbDateColumns" value="created"/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="dbOrderByDescColumns" value="created"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="false"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!--ProftechSearchou-->
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataProftechsearchou" scope="prototype">
+        <property name="dataSource" ref="dataSourceProftech"/>
+        <!--<property name="dbTable" value="searchou"/>-->
+        <property name="dbTable" value="searchounoprogview"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="6"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="json"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value="name,site"/>
+        <property name="jsonRoot" value="results"/>
+        <property name="dbNotStringColumns" value="region_id,district_id"/>
+        <property name="dbOrderByAscColumns" value="name"/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="true"/>
+        <property name="urlRequiredParams" value="name"/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!--SKU-->
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataSku" scope="prototype">
+        <property name="dataSource" ref="dataSourceSku"/>
+        <!--<property name="dbTable" value="searchou"/>-->
+        <property name="dbTable" value="sku"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value=""/>
+        <property name="urlParams" value="regdate_interval"/>
+        <property name="dbColumns" value="regdate"/>
+        <property name="jsonFields" value="regdate"/>
+        <property name="dbSelectColumns" value="regdate, servicenumber, docsubtype, docserie, docnumber, docdate, whosign, statuscode"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy.MM.dd"/>
+        <!--        <property name="dbOrderByAscColumns" value=""/>-->
+        <property name="dbOrderByDescColumns" value="regdate"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="false"/>
+        <property name="dbDateIntervalColumns" value="regdate"/>
+    </bean>
+    <!--ProftechSearchprog-->
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataProftechsearchprog" scope="prototype">
+        <property name="dataSource" ref="dataSourceProftech"/>
+        <property name="dbTable" value="searchprog"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="6"/>
+        <property name="urlParams" value="base_id"/>
+        <property name="dbColumns" value="program_base_id"/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="json"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="results"/>
+        <property name="dbNotStringColumns" value="program_base_id,form_id,term_id"/>
+        <property name="dbOrderByAscColumns" value="specialty,base,program,form,term"/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="true"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!--Connecteddictionary-->
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataProftechconnecteddictionary" scope="prototype">
+        <property name="dataSource" ref="dataSourceProftech"/>
+        <property name="dbTable" value="connecteddictionary"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value=""/>
+        <property name="urlParams" value="specialty_id,specialty,base_id"/>
+        <property name="dbColumns" value="code_spec,name_spec,program_base_id"/>
+        <property name="jsonFields" value="specialty_id,specialty,base_id"/>
+        <property name="dbSelectColumns" value="code_spec,name_spec,program_id,program,program_base_id,program_base_name"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="results"/>
+        <property name="dbNotStringColumns" value="program_base_id"/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="false"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!-- OVGA streetMkad -->
+    <bean id="dataSourceOvga" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataOvgastreetmkad" scope="prototype">
+        <property name="dataSource" ref="dataSourceOvga"/>
+        <!--<property name="dbTable" value="searchou"/>-->
+        <property name="dbTable" value="streetmkad"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value=""/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="StreetCode,Name"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value="StreetCode"/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value="StreetCode"/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="false"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean id="serviceDataOvgamkad" class="ru.smsoft.etp.front.rest.model.ServiceData" scope="prototype">
+        <property name="dataSource" ref="dataSourceAsurnsi"/>
+        <property name="dbTable" value="mkad"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean id="serviceDataOvgatstype" class="ru.smsoft.etp.front.rest.model.ServiceData" scope="prototype">
+        <property name="dataSource" ref="dataSourceAsurnsi"/>
+        <property name="dbTable" value="ts_type"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean id="serviceDataOvgaskdata" class="ru.smsoft.etp.front.rest.model.ServiceData" scope="prototype">
+        <property name="dataSource" ref="dataSourceAsurnsi"/>
+        <property name="dbTable" value="sk_data"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean id="serviceDataOvgaintersectionttk" class="ru.smsoft.etp.front.rest.model.ServiceData" scope="prototype">
+        <property name="dataSource" ref="dataSourceAsurnsi"/>
+        <property name="dbTable" value="intersection_ttk"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean id="serviceDataOvgatsmarka" class="ru.smsoft.etp.front.rest.model.ServiceData" scope="prototype">
+        <property name="dataSource" ref="dataSourceAsurnsi"/>
+        <property name="dbTable" value="ts_marka"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!-- sozags streetMkad -->
+    <bean id="dataSourceSozags" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataSozags" scope="prototype">
+        <property name="dataSource" ref="dataSourceSozags"/>
+        <property name="dbTable" value="sozags"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="10"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="kod_organa_zags,naimenovanie_organa_zags"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value="naimenovanie_organa_zags"/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value="kod_organa_zags"/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataSozagsrequisites" scope="prototype">
+        <property name="dataSource" ref="dataSourceSozags"/>
+        <property name="dbTable" value="zags_requisites_vw"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value=""/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="kod_organa_po_tablitse_sozags_1,nomer_po_porjadku,naimenovanie_poluchatelja_platezha,inn,krr,kod_bjudzhetnoy_klassifikatsii,nomer_scheta,naimenovanie_banka,bik,korschet"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!-- RPR LIcense -->
+    <bean id="dataSourceRpr" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataRprlicense" scope="prototype">
+        <property name="dataSource" ref="dataSourceRpr"/>
+        <property name="dbTable" value="license_rpr"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value=""/>
+        <property name="urlParams" value="first_name,last_name,middle_name,birth_date,category"/>
+        <property name="dbColumns" value="first_name,last_name,middle_name,birth_date,category"/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="cid,plate,address"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value="category"/>
+        <property name="dbDateColumns" value="birth_date"/>
+        <property name="dbDateFormat" value="yyyy-MM-dd"/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value="first_name,last_name,birth_date,category"/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!-- RPR LIcense -->
+    <bean id="dataSourceMedl" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataMedlopf" scope="prototype">
+        <property name="dataSource" ref="dataSourceMedl"/>
+        <property name="dbTable" value="opf"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value=""/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="name,code"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value="code"/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataMoscowzags" scope="prototype">
+        <property name="dataSource" ref="dataSourceSozags"/>
+        <property name="dbTable" value="moscow_zags"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value="kod_organa_zags"/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataZagsall" scope="prototype">
+        <property name="dataSource" ref="dataSourceSozags"/>
+        <property name="dbTable" value="zags_all"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="20"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value="naimenovanie_organa_zags,kod_organa_zags,kod_vida_organa"/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value="kod_organa_zags"/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean id="dataSourceAsurnsi" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataNsi" scope="prototype">
+        <property name="dataSource" ref="dataSourceAsurnsi"/>
+        <property name="dbTable" value="gu_gf_vw"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="6"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value="service_code,oiv_name,service_name,type"/>
+        <property name="dbSelectColumns" value="service_code,oiv_name,service_name,type"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value="service_code"/>
+        <property name="jsonRoot" value="results"/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="true"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="false"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataBtiokrug" scope="prototype">
+        <property name="dataSource" ref="dataSourceAsurnsi"/>
+        <property name="dbTable" value="bti_okrug_vw"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="20"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataBtiraion" scope="prototype">
+        <property name="dataSource" ref="dataSourceAsurnsi"/>
+        <property name="dbTable" value="bti_raion_vw"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="20"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!---pozz_status-->
+    <bean id="dataSourcePozzStatus" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <!--Pozz_list-->
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataPozz_list" scope="prototype">
+        <property name="dataSource" ref="dataSourcePozzStatus"/>
+        <!--<property name="dbTable" value="searchou"/>-->
+        <property name="dbTable" value="status_pozz"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="1"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="serviceNumber,statusCode,created"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbDateColumns" value="created"/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="dbOrderByDescColumns" value="created"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="false"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!-- ODOPM OKN-->
+    <bean id="dataSourceOdopmOkn" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataOdopmokn" scope="prototype">
+        <property name="dataSource" ref="dataSourceOdopmOkn"/>
+        <property name="dbTable" value="okn"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value="location"/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value="id, global_id"/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value="id"/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!---msrfront-->
+    <bean id="dataSourceMsrfront" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataUnion_faculty" scope="prototype">
+        <property name="dataSource" ref="dataSourceMsrfront"/>
+        <!--<property name="dbTable" value="searchou"/>-->
+        <property name="dbTable" value="union_faculty"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="1"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="false"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataUnion_university" scope="prototype">
+        <property name="dataSource" ref="dataSourceMsrfront"/>
+        <!--<property name="dbTable" value="searchou"/>-->
+        <property name="dbTable" value="union_university"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="1"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="false"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataSpozags" scope="prototype">
+        <property name="dataSource" ref="dataSourceSozags"/>
+        <property name="dbTable" value="spozags_vw"/>
+        <property name="pagination" value="false"/>
+        <property name="pageSize" value="10"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value="zags"/>
+        <property name="jsonRoot" value="data"/>
+        <property name="dbNotStringColumns" value="is_show_alert,code"/>
+        <property name="dbOrderByAscColumns" value="zags"/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <!-- Suo Coupons -->
+    <bean id="dataSourceSuo" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataOperatorcoupon" scope="prototype">
+        <property name="dataSource" ref="dataSourceSuo"/>
+        <property name="dbTable" value="suo_aismfc_coupon"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="1"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value="couponnumber,callidsuo"/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value="msgdate"/>
+        <property name="dbDateColumns" value="msgdate"/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value="operatoremail"/>
+        <property name="addCountToJson" value="false"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean id="dataSourcePass" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataTakeawalk" scope="prototype">
+        <property name="dataSource" ref="dataSourcePass"/>
+        <property name="dbTable" value="takeawalk"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="10"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value="grouping,unom,gr"/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataTakeawalkscheduler" scope="prototype">
+        <property name="dataSource" ref="dataSourcePass"/>
+        <property name="dbTable" value="TakeawalkScheduler"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="100"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value="day"/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value="grp"/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="urlRequiredParams" value=""/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+    </bean>
+    <bean id="dataSourceSkudatamart" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean class="ru.smsoft.etp.front.rest.model.ServiceData" id="serviceDataSkudatamart" scope="prototype">
+        <property name="dataSource" ref="dataSourceSkudatamart"/>
+        <property name="dbTable" value="message"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="100"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value=""/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value="service_number"/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value="birth_date"/>
+        <property name="dbDateFormat" value="yyyy-MM-dd"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+        <property name="urlRequiredParams" value=""/>
+    </bean>
+    <bean id="dataSourceMvdmfc" parent="dataSourceParent">
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="
+                <prop key="
+                <prop key="
+            </props>
+        </property>
+    </bean>
+    <bean id="serviceDataBccode" class="ru.smsoft.etp.front.rest.model.ServiceData" scope="prototype">
+        <property name="dataSource" ref="dataSourceMvdmfc"/>
+        <property name="dbTable" value="bccode"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="100"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value="name"/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+        <property name="urlRequiredParams" value=""/>
+    </bean>
+    <bean id="serviceDataOfficialorganfms" class="ru.smsoft.etp.front.rest.model.ServiceData" scope="prototype">
+        <property name="dataSource" ref="dataSourceMvdmfc"/>
+        <property name="dbTable" value="officialorganfms"/>
+        <property name="pagination" value="true"/>
+        <property name="pageSize" value="100"/>
+        <property name="urlParams" value=""/>
+        <property name="dbColumns" value=""/>
+        <property name="jsonFields" value=""/>
+        <property name="dbSelectColumns" value=""/>
+        <property name="fieldsWithArrayType" value=""/>
+        <property name="dbSqlLikeColumns" value="name"/>
+        <property name="jsonRoot" value=""/>
+        <property name="dbNotStringColumns" value=""/>
+        <property name="dbOrderByAscColumns" value=""/>
+        <property name="dbOrderByDescColumns" value=""/>
+        <property name="dbDateColumns" value=""/>
+        <property name="dbDateFormat" value="yyyy-MM-dd HH:mm:ss.SS"/>
+        <property name="excludeTableNameFromJson" value="false"/>
+        <property name="addCountToJson" value="true"/>
+        <property name="dbDateIntervalColumns" value=""/>
+        <property name="urlRequiredParams" value=""/>
+    </bean>
+</beans>

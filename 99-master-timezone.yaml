@@ -1,0 +1,33 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: master
+  name: 99-master-time-zone
+spec:
+  config:
+    ignition:
+      config: {}
+      security:
+        tls: {}
+      timeouts: {}
+      version: 2.2.0
+    networkd: {}
+    passwd: {}
+    storage:
+      file: null
+    systemd:
+      units:
+        - contents: |
+            [Unit]
+            Description=Set time-zone to Europe/Moscow
+            Before=kubelet.service
+            [Service]
+            # Need oneshot to delay kubelet
+            Type=oneshot
+            ExecStart=/usr/bin/timedatectl set-timezone Europe/Moscow
+            [Install]
+            WantedBy=multi-user.target
+          enabled: true
+          name: mosocow-timezone.service
+

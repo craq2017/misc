@@ -1,0 +1,43 @@
+---
+disk: sdb
+helper:
+  name: "helper"
+  ipaddr: "172.19.20.2"
+  networkifacename: "eth0"
+dns:
+  domain: "rh.lab"
+  clusterid: "ocp4"
+  forwarder1: "8.8.8.8"
+  forwarder2: "8.8.4.4"
+dhcp:
+  router: "172.19.20.1"
+  bcast: "172.19.20.255"
+  netmask: "255.255.255.0"
+  poolstart: "172.19.20.3"
+  poolend: "172.19.20.30"
+  ipid: "172.19.20.0"
+  netmaskid: "255.255.255.0"
+bootstrap:
+  name: "bootstrap"
+  ipaddr: "172.19.20.3"
+  macaddr: "00:50:56:be:b1:0a"
+masters:
+  - name: "master0"
+    ipaddr: "172.19.20.4"
+    macaddr: "00:50:56:be:00:37"
+  - name: "master1"
+    ipaddr: "172.19.20.5"
+    macaddr: "00:50:56:be:4c:9e"
+  - name: "master2"
+    ipaddr: "172.19.20.6"
+    macaddr: "00:50:56:be:bc:ea"
+workers:
+  - name: "worker0"
+    ipaddr: "172.19.20.7"
+    macaddr: "00:50:56:be:d2:ee"
+  - name: "worker1"
+    ipaddr: "172.19.20.8"
+    macaddr: "00:50:56:be:66:9d"
+  - name: "worker2"
+    ipaddr: "192.168.7.13"
+    macaddr: "52:54:00:8e:10:34"

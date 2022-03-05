@@ -1,0 +1,475 @@
+apiVersion: v1
+data:
+  example.property.file: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<beans xmlns=\"http://www.springframework.org/schema/beans\"
+    \ xmlns:context=\"http://www.springframework.org/schema/context\"  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+    \ xsi:schemaLocation=\"http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd
+    \ http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd\">
+    \n  <context:annotation-config/>\n  <context:component-scan base-package=\"ru.smsoft.etp.front.rest\"/>\n
+    \ <bean class=\"ru.smsoft.etp.front.rest.dao.Dao\" id=\"dao\">\n    <property
+    name=\"dataSource\" ref=\"dataSourceProftech\"/>\n    <qualifier value=\"dataSourceProftech\"/>\n
+    \ </bean>\n  <!--Parent connection property-->\n  <bean abstract=\"true\" class=\"com.zaxxer.hikari.HikariDataSource\"
+    destroy-method=\"close\" id=\"dataSourceParent\">\n    <property name=\"dataSourceClassName\"
+    value=\"org.postgresql.ds.PGSimpleDataSource\"/>\n    <property name=\"connectionTimeout\"
+    value=\"5000\"/>\n    <property name=\"maximumPoolSize\" value=\"3\"/>\n    <property
+    name=\"readOnly\" value=\"true\"/>\n  </bean>\n  <!-- Moslicense -->\n  <!--<bean
+    id=\"dataSourceMoslicense\" parent=\"dataSourceParent\">-->\n  <!--<property name=\"dataSourceProperties\">-->\n
+    \ <!--<props>-->\n  <!--<prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/moslicensefront</prop>-->\n
+    \ <!--<prop key=\"user\">jetty</prop>-->\n  <!--<prop key=\"password\">2wsx2WSX</prop>-->\n
+    \ <!--</props>-->\n  <!--</property>-->\n  <!--</bean>-->\n  <!--<bean id=\"serviceDataMoslicense\"
+    class=\"ru.smsoft.etp.front.rest.model.ServiceData\" scope=\"prototype\">-->\n
+    \ <!--<property name=\"dataSource\" ref=\"dataSourceMoslicense\"/>-->\n  <!--<property
+    name=\"dbTable\" value=\"reestr\"/>-->\n  <!--<property name=\"pagination\" value=\"false\"/>-->\n
+    \ <!--<property name=\"pageSize\" value=\"\"/>-->\n  <!--<property name=\"urlParams\"
+    value=\"licenseNum,licenseSer\"/>-->\n  <!--<property name=\"dbColumns\" value=\"license_num,license_ser\"/>-->\n
+    \ <!--<property name=\"jsonFields\" value=\"licensenumber,licenseseria\"/>-->\n
+    \ <!--<property name=\"dbSelectColumns\" value=\"inn,license_num,license_ser,numberinreestr\"/>-->\n
+    \ <!--<property name=\"fieldsWithArrayType\" value=\"\"/>-->\n  <!--<property
+    name=\"dbSqlLikeColumns\" value=\"\"/>-->\n  <!--<property name=\"jsonRoot\" value=\"\"/>-->\n
+    \ <!--<property name=\"dbNotStringColumns\" value=\"\"/>-->\n  <!--<property name=\"dbOrderByAscColumns\"
+    value=\"\"/>-->\n  <!--<property name=\"dbOrderByDescColumns\" value=\"\"/>-->\n
+    \ <!--</bean>-->\n  <!-- Proftech -->\n  <bean id=\"dataSourceProftech\" parent=\"dataSourceParent\">\n
+    \   <property name=\"dataSourceProperties\">\n      <props>\n        <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/proftech</prop>\n
+    \       <prop key=\"user\">proftech</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <!---DouFront-->\n  <bean id=\"dataSourceDoufront\"
+    parent=\"dataSourceParent\">\n    <property name=\"dataSourceProperties\">\n      <props>\n
+    \       <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/doufront</prop>\n
+    \       <prop key=\"user\">doufront</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <!--Doubenefits_list-->\n  <bean
+    class=\"ru.smsoft.etp.front.rest.model.ServiceData\" id=\"serviceDataDoufrontbenefits_list\"
+    scope=\"prototype\">\n    <property name=\"dataSource\" ref=\"dataSourceDoufront\"/>\n
+    \   <!--<property name=\"dbTable\" value=\"searchou\"/>-->\n    <property name=\"dbTable\"
+    value=\"benefits_list\"/>\n    <property name=\"pagination\" value=\"false\"/>\n
+    \   <property name=\"pageSize\" value=\"\"/>\n    <property name=\"urlParams\"
+    value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n    <property name=\"jsonFields\"
+    value=\"\"/>\n    <property name=\"dbSelectColumns\" value=\"code,value\"/>\n
+    \   <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property name=\"dbSqlLikeColumns\"
+    value=\"\"/>\n    <property name=\"jsonRoot\" value=\"Benefits\"/>\n    <property
+    name=\"dbNotStringColumns\" value=\"\"/>\n    <property name=\"dbOrderByAscColumns\"
+    value=\"\"/>\n    <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property
+    name=\"dbDateColumns\" value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"\"/>\n
+    \   <property name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property
+    name=\"urlRequiredParams\" value=\"\"/>\n    <property name=\"addCountToJson\"
+    value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\" value=\"\"/>\n
+    \ </bean>\n  <!---UikFront-->\n  <bean id=\"dataSourceEsnsi\" parent=\"dataSourceParent\">\n
+    \   <property name=\"dataSourceProperties\">\n      <props>\n        <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/esnsi</prop>\n
+    \       <prop key=\"user\">esnsi</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataUik_list\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceEsnsi\"/>\n    <property name=\"dbTable\" value=\"uik2_vw\"/>\n
+    \   <property name=\"pagination\" value=\"false\"/>\n    <property name=\"pageSize\"
+    value=\"\"/>\n    <property name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\"
+    value=\"\"/>\n    <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"regioncode,nameuikregion,uiknum,addressuik,countrycode\"/>\n    <property
+    name=\"fieldsWithArrayType\" value=\"\"/>\n    <property name=\"dbSqlLikeColumns\"
+    value=\"\"/>\n    <property name=\"jsonRoot\" value=\"Uiks\"/>\n    <property
+    name=\"dbNotStringColumns\" value=\"regioncode,uiknum,countrycode\"/>\n    <property
+    name=\"dbOrderByAscColumns\" value=\"\"/>\n    <property name=\"dbOrderByDescColumns\"
+    value=\"\"/>\n    <property name=\"dbDateColumns\" value=\"\"/>\n    <property
+    name=\"dbDateFormat\" value=\"\"/>\n    <property name=\"excludeTableNameFromJson\"
+    value=\"false\"/>\n    <property name=\"urlRequiredParams\" value=\"\"/>\n    <property
+    name=\"addCountToJson\" value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\"
+    value=\"\"/>\n  </bean>\n  <!---zags_status-->\n  <bean id=\"dataSourceZagsstatus\"
+    parent=\"dataSourceParent\">\n    <property name=\"dataSourceProperties\">\n      <props>\n
+    \       <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/etp</prop>\n        <prop
+    key=\"user\">etp</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n      </props>\n
+    \   </property>\n  </bean>\n  <!---SKU-->\n  <bean id=\"dataSourceSku\" parent=\"dataSourceParent\">\n
+    \   <property name=\"dataSourceProperties\">\n      <props>\n        <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/preventiveskufront</prop>\n
+    \       <prop key=\"user\">preventiveskufront</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <!--Zags_list-->\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataZags_list\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceZagsstatus\"/>\n    <!--<property name=\"dbTable\" value=\"searchou\"/>-->\n
+    \   <property name=\"dbTable\" value=\"status_zags\"/>\n    <property name=\"pagination\"
+    value=\"true\"/>\n    <property name=\"pageSize\" value=\"1\"/>\n    <property
+    name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n
+    \   <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"serviceNumber,statusCode,created\"/>\n    <property name=\"fieldsWithArrayType\"
+    value=\"\"/>\n    <property name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property
+    name=\"jsonRoot\" value=\"\"/>\n    <property name=\"dbNotStringColumns\" value=\"\"/>\n
+    \   <property name=\"dbOrderByAscColumns\" value=\"\"/>\n    <property name=\"dbDateColumns\"
+    value=\"created\"/>\n    <property name=\"dbDateFormat\" value=\"yyyy-MM-dd HH:mm:ss.SS\"/>\n
+    \   <property name=\"dbOrderByDescColumns\" value=\"created\"/>\n    <property
+    name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property name=\"urlRequiredParams\"
+    value=\"\"/>\n    <property name=\"addCountToJson\" value=\"false\"/>\n    <property
+    name=\"dbDateIntervalColumns\" value=\"\"/>\n  </bean>\n  <!--ProftechSearchou-->\n
+    \ <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\" id=\"serviceDataProftechsearchou\"
+    scope=\"prototype\">\n    <property name=\"dataSource\" ref=\"dataSourceProftech\"/>\n
+    \   <!--<property name=\"dbTable\" value=\"searchou\"/>-->\n    <property name=\"dbTable\"
+    value=\"searchounoprogview\"/>\n    <property name=\"pagination\" value=\"true\"/>\n
+    \   <property name=\"pageSize\" value=\"6\"/>\n    <property name=\"urlParams\"
+    value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n    <property name=\"jsonFields\"
+    value=\"\"/>\n    <property name=\"dbSelectColumns\" value=\"json\"/>\n    <property
+    name=\"fieldsWithArrayType\" value=\"\"/>\n    <property name=\"dbSqlLikeColumns\"
+    value=\"name,site\"/>\n    <property name=\"jsonRoot\" value=\"results\"/>\n    <property
+    name=\"dbNotStringColumns\" value=\"region_id,district_id\"/>\n    <property name=\"dbOrderByAscColumns\"
+    value=\"name\"/>\n    <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property
+    name=\"dbDateColumns\" value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"\"/>\n
+    \   <property name=\"excludeTableNameFromJson\" value=\"true\"/>\n    <property
+    name=\"urlRequiredParams\" value=\"name\"/>\n    <property name=\"addCountToJson\"
+    value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\" value=\"\"/>\n
+    \ </bean>\n  <!--SKU-->\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataSku\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceSku\"/>\n    <!--<property name=\"dbTable\" value=\"searchou\"/>-->\n
+    \   <property name=\"dbTable\" value=\"sku\"/>\n    <property name=\"pagination\"
+    value=\"false\"/>\n    <property name=\"pageSize\" value=\"\"/>\n    <property
+    name=\"urlParams\" value=\"regdate_interval\"/>\n    <property name=\"dbColumns\"
+    value=\"regdate\"/>\n    <property name=\"jsonFields\" value=\"regdate\"/>\n    <property
+    name=\"dbSelectColumns\" value=\"servicenumber, regdate, docsubtype, docserie,
+    docnumber, docdate, whosign, statuscode\"/>\n    <property name=\"fieldsWithArrayType\"
+    value=\"\"/>\n    <property name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property
+    name=\"jsonRoot\" value=\"\"/>\n    <property name=\"dbNotStringColumns\" value=\"\"/>\n
+    \   <property name=\"dbOrderByAscColumns\" value=\"\"/>\n    <property name=\"dbDateColumns\"
+    value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"yyyy.MM.dd\"/>\n    <!--
+    \       <property name=\"dbOrderByAscColumns\" value=\"\"/>-->\n    <property
+    name=\"dbOrderByDescColumns\" value=\"regdate\"/>\n    <property name=\"excludeTableNameFromJson\"
+    value=\"false\"/>\n    <property name=\"urlRequiredParams\" value=\"\"/>\n    <property
+    name=\"addCountToJson\" value=\"false\"/>\n    <property name=\"dbDateIntervalColumns\"
+    value=\"regdate\"/>\n  </bean>\n  <!--ProftechSearchprog-->\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataProftechsearchprog\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceProftech\"/>\n    <property name=\"dbTable\" value=\"searchprog\"/>\n
+    \   <property name=\"pagination\" value=\"true\"/>\n    <property name=\"pageSize\"
+    value=\"6\"/>\n    <property name=\"urlParams\" value=\"base_id\"/>\n    <property
+    name=\"dbColumns\" value=\"program_base_id\"/>\n    <property name=\"jsonFields\"
+    value=\"\"/>\n    <property name=\"dbSelectColumns\" value=\"json\"/>\n    <property
+    name=\"fieldsWithArrayType\" value=\"\"/>\n    <property name=\"dbSqlLikeColumns\"
+    value=\"\"/>\n    <property name=\"jsonRoot\" value=\"results\"/>\n    <property
+    name=\"dbNotStringColumns\" value=\"program_base_id,form_id,term_id\"/>\n    <property
+    name=\"dbOrderByAscColumns\" value=\"specialty,base,program,form,term\"/>\n    <property
+    name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property name=\"dbDateColumns\"
+    value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"\"/>\n    <property
+    name=\"excludeTableNameFromJson\" value=\"true\"/>\n    <property name=\"urlRequiredParams\"
+    value=\"\"/>\n    <property name=\"addCountToJson\" value=\"true\"/>\n    <property
+    name=\"dbDateIntervalColumns\" value=\"\"/>\n  </bean>\n  <!--Connecteddictionary-->\n
+    \ <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\" id=\"serviceDataProftechconnecteddictionary\"
+    scope=\"prototype\">\n    <property name=\"dataSource\" ref=\"dataSourceProftech\"/>\n
+    \   <property name=\"dbTable\" value=\"connecteddictionary\"/>\n    <property
+    name=\"pagination\" value=\"false\"/>\n    <property name=\"pageSize\" value=\"\"/>\n
+    \   <property name=\"urlParams\" value=\"specialty_id,specialty,base_id\"/>\n
+    \   <property name=\"dbColumns\" value=\"code_spec,name_spec,program_base_id\"/>\n
+    \   <property name=\"jsonFields\" value=\"specialty_id,specialty,base_id\"/>\n
+    \   <property name=\"dbSelectColumns\" value=\"code_spec,name_spec,program_id,program,program_base_id,program_base_name\"/>\n
+    \   <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property name=\"dbSqlLikeColumns\"
+    value=\"\"/>\n    <property name=\"jsonRoot\" value=\"results\"/>\n    <property
+    name=\"dbNotStringColumns\" value=\"program_base_id\"/>\n    <property name=\"dbOrderByAscColumns\"
+    value=\"\"/>\n    <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property
+    name=\"dbDateColumns\" value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"\"/>\n
+    \   <property name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property
+    name=\"urlRequiredParams\" value=\"\"/>\n    <property name=\"addCountToJson\"
+    value=\"false\"/>\n    <property name=\"dbDateIntervalColumns\" value=\"\"/>\n
+    \ </bean>\n  <!-- OVGA streetMkad -->\n  <bean id=\"dataSourceOvga\" parent=\"dataSourceParent\">\n
+    \   <property name=\"dataSourceProperties\">\n      <props>\n        <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/ovgafront</prop>\n
+    \       <prop key=\"user\">ovgafront</prop>\n        <prop key=\"password\">ovgafront</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataOvgastreetmkad\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceOvga\"/>\n    <!--<property name=\"dbTable\" value=\"searchou\"/>-->\n
+    \   <property name=\"dbTable\" value=\"streetmkad\"/>\n    <property name=\"pagination\"
+    value=\"false\"/>\n    <property name=\"pageSize\" value=\"\"/>\n    <property
+    name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n
+    \   <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"StreetCode,Name\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n
+    \   <property name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property name=\"jsonRoot\"
+    value=\"\"/>\n    <property name=\"dbNotStringColumns\" value=\"StreetCode\"/>\n
+    \   <property name=\"dbOrderByAscColumns\" value=\"\"/>\n    <property name=\"dbOrderByDescColumns\"
+    value=\"StreetCode\"/>\n    <property name=\"dbDateColumns\" value=\"\"/>\n    <property
+    name=\"dbDateFormat\" value=\"\"/>\n    <property name=\"excludeTableNameFromJson\"
+    value=\"false\"/>\n    <property name=\"urlRequiredParams\" value=\"\"/>\n    <property
+    name=\"addCountToJson\" value=\"false\"/>\n    <property name=\"dbDateIntervalColumns\"
+    value=\"\"/>\n  </bean>\n  <!-- sozags streetMkad -->\n  <bean id=\"dataSourceSozags\"
+    parent=\"dataSourceParent\">\n    <property name=\"dataSourceProperties\">\n      <props>\n
+    \       <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/esnsi</prop>\n
+    \       <prop key=\"user\">esnsi</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataSozags\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceSozags\"/>\n    <property name=\"dbTable\" value=\"sozags\"/>\n
+    \   <property name=\"pagination\" value=\"true\"/>\n    <property name=\"pageSize\"
+    value=\"10\"/>\n    <property name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\"
+    value=\"\"/>\n    <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"kod_organa_zags,naimenovanie_organa_zags\"/>\n    <property name=\"fieldsWithArrayType\"
+    value=\"\"/>\n    <property name=\"dbSqlLikeColumns\" value=\"naimenovanie_organa_zags\"/>\n
+    \   <property name=\"jsonRoot\" value=\"data\"/>\n    <property name=\"dbNotStringColumns\"
+    value=\"\"/>\n    <property name=\"dbOrderByAscColumns\" value=\"kod_organa_zags\"/>\n
+    \   <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property name=\"dbDateColumns\"
+    value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"\"/>\n    <property
+    name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property name=\"urlRequiredParams\"
+    value=\"\"/>\n    <property name=\"addCountToJson\" value=\"true\"/>\n    <property
+    name=\"dbDateIntervalColumns\" value=\"\"/>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataSozagsrequisites\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceSozags\"/>\n    <property name=\"dbTable\" value=\"zags_requisites_vw\"/>\n
+    \   <property name=\"pagination\" value=\"false\"/>\n    <property name=\"pageSize\"
+    value=\"\"/>\n    <property name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\"
+    value=\"\"/>\n    <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"kod_organa_po_tablitse_sozags_1,nomer_po_porjadku,naimenovanie_poluchatelja_platezha,inn,krr,kod_bjudzhetnoy_klassifikatsii,nomer_scheta,naimenovanie_banka,bik,korschet\"/>\n
+    \   <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property name=\"dbSqlLikeColumns\"
+    value=\"\"/>\n    <property name=\"jsonRoot\" value=\"data\"/>\n    <property
+    name=\"dbNotStringColumns\" value=\"\"/>\n    <property name=\"dbOrderByAscColumns\"
+    value=\"\"/>\n    <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property
+    name=\"dbDateColumns\" value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"\"/>\n
+    \   <property name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property
+    name=\"urlRequiredParams\" value=\"\"/>\n    <property name=\"addCountToJson\"
+    value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\" value=\"\"/>\n
+    \ </bean>\n  <!-- RPR LIcense -->\n  <bean id=\"dataSourceRpr\" parent=\"dataSourceParent\">\n
+    \   <property name=\"dataSourceProperties\">\n      <props>\n        <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/rprfront</prop>\n
+    \       <prop key=\"user\">rprfront</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataRprlicense\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceRpr\"/>\n    <property name=\"dbTable\" value=\"license_rpr\"/>\n
+    \   <property name=\"pagination\" value=\"false\"/>\n    <property name=\"pageSize\"
+    value=\"\"/>\n    <property name=\"urlParams\" value=\"first_name,last_name,middle_name,birth_date,category\"/>\n
+    \   <property name=\"dbColumns\" value=\"first_name,last_name,middle_name,birth_date,category\"/>\n
+    \   <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"cid,plate,address\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n
+    \   <property name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property name=\"jsonRoot\"
+    value=\"data\"/>\n    <property name=\"dbNotStringColumns\" value=\"category\"/>\n
+    \   <property name=\"dbDateColumns\" value=\"birth_date\"/>\n    <property name=\"dbDateFormat\"
+    value=\"yyyy-MM-dd\"/>\n    <property name=\"dbOrderByAscColumns\" value=\"\"/>\n
+    \   <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property name=\"excludeTableNameFromJson\"
+    value=\"false\"/>\n    <property name=\"urlRequiredParams\" value=\"first_name,last_name,birth_date,category\"/>\n
+    \   <property name=\"addCountToJson\" value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\"
+    value=\"\"/>\n  </bean>\n  <!-- RPR LIcense -->\n  <bean id=\"dataSourceMedl\"
+    parent=\"dataSourceParent\">\n    <property name=\"dataSourceProperties\">\n      <props>\n
+    \       <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/medlicensefront</prop>\n
+    \       <prop key=\"user\">medlicensefront</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataMedlopf\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceMedl\"/>\n    <property name=\"dbTable\" value=\"opf\"/>\n    <property
+    name=\"pagination\" value=\"false\"/>\n    <property name=\"pageSize\" value=\"\"/>\n
+    \   <property name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\"
+    value=\"\"/>\n    <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"name,code\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n
+    \   <property name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property name=\"jsonRoot\"
+    value=\"data\"/>\n    <property name=\"dbNotStringColumns\" value=\"code\"/>\n
+    \   <property name=\"dbOrderByAscColumns\" value=\"\"/>\n    <property name=\"dbOrderByDescColumns\"
+    value=\"\"/>\n    <property name=\"dbDateColumns\" value=\"\"/>\n    <property
+    name=\"dbDateFormat\" value=\"\"/>\n    <property name=\"excludeTableNameFromJson\"
+    value=\"false\"/>\n    <property name=\"urlRequiredParams\" value=\"\"/>\n    <property
+    name=\"addCountToJson\" value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\"
+    value=\"\"/>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataMoscowzags\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceSozags\"/>\n    <property name=\"dbTable\" value=\"moscow_zags\"/>\n
+    \   <property name=\"pagination\" value=\"false\"/>\n    <property name=\"pageSize\"
+    value=\"10\"/>\n    <property name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\"
+    value=\"\"/>\n    <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property
+    name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property name=\"jsonRoot\" value=\"data\"/>\n
+    \   <property name=\"dbNotStringColumns\" value=\"\"/>\n    <property name=\"dbOrderByAscColumns\"
+    value=\"kod_organa_zags\"/>\n    <property name=\"dbOrderByDescColumns\" value=\"\"/>\n
+    \   <property name=\"dbDateColumns\" value=\"\"/>\n    <property name=\"dbDateFormat\"
+    value=\"\"/>\n    <property name=\"excludeTableNameFromJson\" value=\"false\"/>\n
+    \   <property name=\"urlRequiredParams\" value=\"\"/>\n    <property name=\"addCountToJson\"
+    value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\" value=\"\"/>\n
+    \ </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\" id=\"serviceDataZagsall\"
+    scope=\"prototype\">\n    <property name=\"dataSource\" ref=\"dataSourceSozags\"/>\n
+    \   <property name=\"dbTable\" value=\"zags_all\"/>\n    <property name=\"pagination\"
+    value=\"true\"/>\n    <property name=\"pageSize\" value=\"20\"/>\n    <property
+    name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n
+    \   <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property
+    name=\"dbSqlLikeColumns\" value=\"naimenovanie_organa_zags,kod_organa_zags,kod_vida_organa\"/>\n
+    \   <property name=\"jsonRoot\" value=\"data\"/>\n    <property name=\"dbNotStringColumns\"
+    value=\"\"/>\n    <property name=\"dbOrderByAscColumns\" value=\"kod_organa_zags\"/>\n
+    \   <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property name=\"dbDateColumns\"
+    value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"\"/>\n    <property
+    name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property name=\"urlRequiredParams\"
+    value=\"\"/>\n    <property name=\"addCountToJson\" value=\"true\"/>\n    <property
+    name=\"dbDateIntervalColumns\" value=\"\"/>\n  </bean>\n  <bean id=\"dataSourceAsurnsi\"
+    parent=\"dataSourceParent\">\n    <property name=\"dataSourceProperties\">\n      <props>\n
+    \       <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/asurnsi</prop>\n
+    \       <prop key=\"user\">asurnsi</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataNsi\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceAsurnsi\"/>\n    <property name=\"dbTable\" value=\"gu_gf_vw\"/>\n
+    \   <property name=\"pagination\" value=\"false\"/>\n    <property name=\"pageSize\"
+    value=\"6\"/>\n    <property name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\"
+    value=\"\"/>\n    <property name=\"jsonFields\" value=\"service_code,oiv_name,service_name,type\"/>\n
+    \   <property name=\"dbSelectColumns\" value=\"service_code,oiv_name,service_name,type\"/>\n
+    \   <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property name=\"dbSqlLikeColumns\"
+    value=\"service_code\"/>\n    <property name=\"jsonRoot\" value=\"results\"/>\n
+    \   <property name=\"dbNotStringColumns\" value=\"\"/>\n    <property name=\"dbOrderByAscColumns\"
+    value=\"\"/>\n    <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property
+    name=\"dbDateColumns\" value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"\"/>\n
+    \   <property name=\"excludeTableNameFromJson\" value=\"true\"/>\n    <property
+    name=\"urlRequiredParams\" value=\"\"/>\n    <property name=\"addCountToJson\"
+    value=\"false\"/>\n    <property name=\"dbDateIntervalColumns\" value=\"\"/>\n
+    \ </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\" id=\"serviceDataBtiokrug\"
+    scope=\"prototype\">\n    <property name=\"dataSource\" ref=\"dataSourceAsurnsi\"/>\n
+    \   <property name=\"dbTable\" value=\"bti_okrug_vw\"/>\n    <property name=\"pagination\"
+    value=\"false\"/>\n    <property name=\"pageSize\" value=\"20\"/>\n    <property
+    name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n
+    \   <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property
+    name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property name=\"jsonRoot\" value=\"data\"/>\n
+    \   <property name=\"dbNotStringColumns\" value=\"\"/>\n    <property name=\"dbOrderByAscColumns\"
+    value=\"\"/>\n    <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property
+    name=\"dbDateColumns\" value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"\"/>\n
+    \   <property name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property
+    name=\"urlRequiredParams\" value=\"\"/>\n    <property name=\"addCountToJson\"
+    value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\" value=\"\"/>\n
+    \ </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\" id=\"serviceDataBtiraion\"
+    scope=\"prototype\">\n    <property name=\"dataSource\" ref=\"dataSourceAsurnsi\"/>\n
+    \   <property name=\"dbTable\" value=\"bti_raion_vw\"/>\n    <property name=\"pagination\"
+    value=\"false\"/>\n    <property name=\"pageSize\" value=\"20\"/>\n    <property
+    name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n
+    \   <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property
+    name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property name=\"jsonRoot\" value=\"data\"/>\n
+    \   <property name=\"dbNotStringColumns\" value=\"\"/>\n    <property name=\"dbOrderByAscColumns\"
+    value=\"\"/>\n    <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property
+    name=\"dbDateColumns\" value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"\"/>\n
+    \   <property name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property
+    name=\"urlRequiredParams\" value=\"\"/>\n    <property name=\"addCountToJson\"
+    value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\" value=\"\"/>\n
+    \ </bean>\n  <!---pozz_status-->\n  <bean id=\"dataSourcePozzStatus\" parent=\"dataSourceParent\">\n
+    \   <property name=\"dataSourceProperties\">\n      <props>\n        <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/etp</prop>\n
+    \       <prop key=\"user\">etp</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <!--Pozz_list-->\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataPozz_list\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourcePozzStatus\"/>\n    <!--<property name=\"dbTable\" value=\"searchou\"/>-->\n
+    \   <property name=\"dbTable\" value=\"status_pozz\"/>\n    <property name=\"pagination\"
+    value=\"true\"/>\n    <property name=\"pageSize\" value=\"1\"/>\n    <property
+    name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n
+    \   <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"serviceNumber,statusCode,created\"/>\n    <property name=\"fieldsWithArrayType\"
+    value=\"\"/>\n    <property name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property
+    name=\"jsonRoot\" value=\"\"/>\n    <property name=\"dbNotStringColumns\" value=\"\"/>\n
+    \   <property name=\"dbOrderByAscColumns\" value=\"\"/>\n    <property name=\"dbDateColumns\"
+    value=\"created\"/>\n    <property name=\"dbDateFormat\" value=\"yyyy-MM-dd HH:mm:ss.SS\"/>\n
+    \   <property name=\"dbOrderByDescColumns\" value=\"created\"/>\n    <property
+    name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property name=\"urlRequiredParams\"
+    value=\"\"/>\n    <property name=\"addCountToJson\" value=\"false\"/>\n    <property
+    name=\"dbDateIntervalColumns\" value=\"\"/>\n  </bean>\n  <!-- ODOPM OKN-->\n
+    \ <bean id=\"dataSourceOdopmOkn\" parent=\"dataSourceParent\">\n    <property
+    name=\"dataSourceProperties\">\n      <props>\n        <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/odopm</prop>\n
+    \       <prop key=\"user\">odopm</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataOdopmokn\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceOdopmOkn\"/>\n    <property name=\"dbTable\" value=\"okn\"/>\n
+    \   <property name=\"pagination\" value=\"false\"/>\n    <property name=\"pageSize\"
+    value=\"10\"/>\n    <property name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\"
+    value=\"\"/>\n    <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property
+    name=\"dbSqlLikeColumns\" value=\"location\"/>\n    <property name=\"jsonRoot\"
+    value=\"\"/>\n    <property name=\"dbNotStringColumns\" value=\"id, global_id\"/>\n
+    \   <property name=\"dbOrderByAscColumns\" value=\"\"/>\n    <property name=\"dbOrderByDescColumns\"
+    value=\"id\"/>\n    <property name=\"dbDateColumns\" value=\"\"/>\n    <property
+    name=\"dbDateFormat\" value=\"yyyy-MM-dd HH:mm:ss.SS\"/>\n    <property name=\"excludeTableNameFromJson\"
+    value=\"false\"/>\n    <property name=\"urlRequiredParams\" value=\"\"/>\n    <property
+    name=\"addCountToJson\" value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\"
+    value=\"\"/>\n  </bean>\n  <!---msrfront-->\n  <bean id=\"dataSourceMsrfront\"
+    parent=\"dataSourceParent\">\n    <property name=\"dataSourceProperties\">\n      <props>\n
+    \       <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/msrfront</prop>\n
+    \       <prop key=\"user\">msrfront</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataUnion_faculty\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceMsrfront\"/>\n    <!--<property name=\"dbTable\" value=\"searchou\"/>-->\n
+    \   <property name=\"dbTable\" value=\"union_faculty\"/>\n    <property name=\"pagination\"
+    value=\"false\"/>\n    <property name=\"pageSize\" value=\"1\"/>\n    <property
+    name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n
+    \   <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property
+    name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property name=\"jsonRoot\" value=\"data\"/>\n
+    \   <property name=\"dbNotStringColumns\" value=\"\"/>\n    <property name=\"dbOrderByAscColumns\"
+    value=\"\"/>\n    <property name=\"dbDateColumns\" value=\"\"/>\n    <property
+    name=\"dbDateFormat\" value=\"yyyy-MM-dd HH:mm:ss.SS\"/>\n    <property name=\"dbOrderByDescColumns\"
+    value=\"\"/>\n    <property name=\"excludeTableNameFromJson\" value=\"false\"/>\n
+    \   <property name=\"urlRequiredParams\" value=\"\"/>\n    <property name=\"addCountToJson\"
+    value=\"false\"/>\n    <property name=\"dbDateIntervalColumns\" value=\"\"/>\n
+    \ </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\" id=\"serviceDataUnion_university\"
+    scope=\"prototype\">\n    <property name=\"dataSource\" ref=\"dataSourceMsrfront\"/>\n
+    \   <!--<property name=\"dbTable\" value=\"searchou\"/>-->\n    <property name=\"dbTable\"
+    value=\"union_university\"/>\n    <property name=\"pagination\" value=\"false\"/>\n
+    \   <property name=\"pageSize\" value=\"1\"/>\n    <property name=\"urlParams\"
+    value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n    <property name=\"jsonFields\"
+    value=\"\"/>\n    <property name=\"dbSelectColumns\" value=\"\"/>\n    <property
+    name=\"fieldsWithArrayType\" value=\"\"/>\n    <property name=\"dbSqlLikeColumns\"
+    value=\"\"/>\n    <property name=\"jsonRoot\" value=\"data\"/>\n    <property
+    name=\"dbNotStringColumns\" value=\"\"/>\n    <property name=\"dbOrderByAscColumns\"
+    value=\"\"/>\n    <property name=\"dbDateColumns\" value=\"\"/>\n    <property
+    name=\"dbDateFormat\" value=\"yyyy-MM-dd HH:mm:ss.SS\"/>\n    <property name=\"dbOrderByDescColumns\"
+    value=\"\"/>\n    <property name=\"excludeTableNameFromJson\" value=\"false\"/>\n
+    \   <property name=\"urlRequiredParams\" value=\"\"/>\n    <property name=\"addCountToJson\"
+    value=\"false\"/>\n    <property name=\"dbDateIntervalColumns\" value=\"\"/>\n
+    \ </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\" id=\"serviceDataSpozags\"
+    scope=\"prototype\">\n    <property name=\"dataSource\" ref=\"dataSourceSozags\"/>\n
+    \   <property name=\"dbTable\" value=\"spozags_vw\"/>\n    <property name=\"pagination\"
+    value=\"false\"/>\n    <property name=\"pageSize\" value=\"10\"/>\n    <property
+    name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\" value=\"\"/>\n
+    \   <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property
+    name=\"dbSqlLikeColumns\" value=\"zags\"/>\n    <property name=\"jsonRoot\" value=\"data\"/>\n
+    \   <property name=\"dbNotStringColumns\" value=\"is_show_alert,code\"/>\n    <property
+    name=\"dbOrderByAscColumns\" value=\"zags\"/>\n    <property name=\"dbDateColumns\"
+    value=\"\"/>\n    <property name=\"dbDateFormat\" value=\"yyyy-MM-dd HH:mm:ss.SS\"/>\n
+    \   <property name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property name=\"excludeTableNameFromJson\"
+    value=\"false\"/>\n    <property name=\"urlRequiredParams\" value=\"\"/>\n    <property
+    name=\"addCountToJson\" value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\"
+    value=\"\"/>\n  </bean>\n  <!-- Suo Coupons -->\n  <bean id=\"dataSourceSuo\"
+    parent=\"dataSourceParent\">\n    <property name=\"dataSourceProperties\">\n      <props>\n
+    \       <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/suofront</prop>\n
+    \       <prop key=\"user\">suofront</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataOperatorcoupon\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceSuo\"/>\n    <property name=\"dbTable\" value=\"suo_aismfc_coupon\"/>\n
+    \   <property name=\"pagination\" value=\"true\"/>\n    <property name=\"pageSize\"
+    value=\"1\"/>\n    <property name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\"
+    value=\"\"/>\n    <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"couponnumber,callidsuo\"/>\n    <property name=\"fieldsWithArrayType\"
+    value=\"\"/>\n    <property name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property
+    name=\"jsonRoot\" value=\"\"/>\n    <property name=\"dbNotStringColumns\" value=\"\"/>\n
+    \   <property name=\"dbOrderByAscColumns\" value=\"\"/>\n    <property name=\"dbOrderByDescColumns\"
+    value=\"msgdate\"/>\n    <property name=\"dbDateColumns\" value=\"msgdate\"/>\n
+    \   <property name=\"dbDateFormat\" value=\"yyyy-MM-dd HH:mm:ss.SS\"/>\n    <property
+    name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property name=\"urlRequiredParams\"
+    value=\"operatoremail\"/>\n    <property name=\"addCountToJson\" value=\"false\"/>\n
+    \   <property name=\"dbDateIntervalColumns\" value=\"\"/>\n  </bean>\n  <bean
+    id=\"dataSourcePass\" parent=\"dataSourceParent\">\n    <property name=\"dataSourceProperties\">\n
+    \     <props>\n        <prop key=\"url\">jdbc:postgresql://10.127.130.9:5432/pass</prop>\n
+    \       <prop key=\"user\">pass</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataTakeawalk\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourcePass\"/>\n    <property name=\"dbTable\" value=\"takeawalk\"/>\n
+    \   <property name=\"pagination\" value=\"true\"/>\n    <property name=\"pageSize\"
+    value=\"10\"/>\n    <property name=\"urlParams\" value=\"\"/>\n    <property name=\"dbColumns\"
+    value=\"\"/>\n    <property name=\"jsonFields\" value=\"\"/>\n    <property name=\"dbSelectColumns\"
+    value=\"\"/>\n    <property name=\"fieldsWithArrayType\" value=\"\"/>\n    <property
+    name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property name=\"jsonRoot\" value=\"\"/>\n
+    \   <property name=\"dbNotStringColumns\" value=\"grouping,unom,gr\"/>\n    <property
+    name=\"dbOrderByAscColumns\" value=\"\"/>\n    <property name=\"dbOrderByDescColumns\"
+    value=\"\"/>\n    <property name=\"dbDateColumns\" value=\"\"/>\n    <property
+    name=\"dbDateFormat\" value=\"yyyy-MM-dd HH:mm:ss.SS\"/>\n    <property name=\"excludeTableNameFromJson\"
+    value=\"false\"/>\n    <property name=\"urlRequiredParams\" value=\"\"/>\n    <property
+    name=\"addCountToJson\" value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\"
+    value=\"\"/>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataTakeawalkscheduler\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourcePass\"/>\n    <property name=\"dbTable\" value=\"TakeawalkScheduler\"/>\n
+    \   <property name=\"pagination\" value=\"true\"/>\n    <property name=\"pageSize\"
+    value=\"100\"/>\n    <property name=\"urlParams\" value=\"\"/>\n    <property
+    name=\"dbColumns\" value=\"\"/>\n    <property name=\"jsonFields\" value=\"\"/>\n
+    \   <property name=\"dbSelectColumns\" value=\"\"/>\n    <property name=\"fieldsWithArrayType\"
+    value=\"\"/>\n    <property name=\"dbSqlLikeColumns\" value=\"day\"/>\n    <property
+    name=\"jsonRoot\" value=\"\"/>\n    <property name=\"dbNotStringColumns\" value=\"grp\"/>\n
+    \   <property name=\"dbOrderByAscColumns\" value=\"\"/>\n    <property name=\"dbOrderByDescColumns\"
+    value=\"\"/>\n    <property name=\"dbDateColumns\" value=\"\"/>\n    <property
+    name=\"dbDateFormat\" value=\"yyyy-MM-dd HH:mm:ss.SS\"/>\n    <property name=\"excludeTableNameFromJson\"
+    value=\"false\"/>\n    <property name=\"urlRequiredParams\" value=\"\"/>\n    <property
+    name=\"addCountToJson\" value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\"
+    value=\"\"/>\n  </bean>\n  <bean id=\"dataSourceSkudatamart\" parent=\"dataSourceParent\">\n
+    \   <property name=\"dataSourceProperties\">\n      <props>\n        <prop key=\"url\">jdbc:postgresql://10.127.130.18:5432/skudatamart</prop>\n
+    \       <prop key=\"user\">skudatamart</prop>\n        <prop key=\"password\">2wsx2WSX</prop>\n
+    \     </props>\n    </property>\n  </bean>\n  <bean class=\"ru.smsoft.etp.front.rest.model.ServiceData\"
+    id=\"serviceDataSkudatamart\" scope=\"prototype\">\n    <property name=\"dataSource\"
+    ref=\"dataSourceSkudatamart\"/>\n    <property name=\"dbTable\" value=\"message\"/>\n
+    \   <property name=\"pagination\" value=\"true\"/>\n    <property name=\"pageSize\"
+    value=\"100\"/>\n    <property name=\"urlParams\" value=\"\"/>\n    <property
+    name=\"dbColumns\" value=\"\"/>\n    <property name=\"jsonFields\" value=\"\"/>\n
+    \   <property name=\"dbSelectColumns\" value=\"\"/>\n    <property name=\"fieldsWithArrayType\"
+    value=\"\"/>\n    <property name=\"dbSqlLikeColumns\" value=\"\"/>\n    <property
+    name=\"jsonRoot\" value=\"\"/>\n    <property name=\"dbNotStringColumns\" value=\"\"/>\n
+    \   <property name=\"dbOrderByAscColumns\" value=\"service_number\"/>\n    <property
+    name=\"dbOrderByDescColumns\" value=\"\"/>\n    <property name=\"dbDateColumns\"
+    value=\"birth_date\"/>\n    <property name=\"dbDateFormat\" value=\"yyyy-MM-dd\"/>\n
+    \   <property name=\"excludeTableNameFromJson\" value=\"false\"/>\n    <property
+    name=\"addCountToJson\" value=\"true\"/>\n    <property name=\"dbDateIntervalColumns\"
+    value=\"\"/>\n    <property name=\"urlRequiredParams\" value=\"\"/>\n  </bean>\n</beans>"
+kind: ConfigMap
+metadata:
+  name: example
+

@@ -1,0 +1,296 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  annotations:
+    machineconfiguration.openshift.io/generated-by-controller-version: 480accd5d4f631d34e560aa5c8a3dfab0c7bbe27
+  creationTimestamp: "2020-05-29T09:12:43Z"
+  generation: 1
+  name: rendered-worker-c04794393c182bec617a6f56d2186520
+  ownerReferences:
+  - apiVersion: machineconfiguration.openshift.io/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: MachineConfigPool
+    name: worker
+    uid: eb04390e-d698-43fd-8a55-a195bbfea769
+spec:
+  config:
+    ignition:
+      config: {}
+      security:
+        tls: {}
+      timeouts: {}
+      version: 2.2.0
+    networkd: {}
+    passwd:
+      users:
+      - name: core
+        sshAuthorizedKeys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCkaXTB8fgKFMO8rjAvDLm8BNTeJXN9Hj2nlqNiDgDE/webFUlwx4GXFxDYNI3/gneUG5sJzSrsi2QweYaTUUHSfmmE2LngbzHanCLwZWD1vsXnJNrR/fa7kNgztceuNWFxdu4gK1fvkpl+gsECzXvMURrE/tH8EO6UtsC1DCA3qPBodneMqRdzeAHKxVRMHs1pBon7tldmCXqBEwwVylmexjb4kX7GEi9umZnurEwGO4ZItsLrA03WqLmyzgxW36UXIhf+Q+SXMuQx+TdgIhiNlZa3XBlbFwlip9Q0rHOrUJfojtkJFzc1+DabsLUzP8g5+Q8uFjR6drH+zemLBa0nshD5ipbbhkdnHJgXJQ67y/RSgmb33iCaaDyQnj8j2yh39H91rWe8/qS5FMTAM1p5lZoD+VFyBoVOXHTYCgdJmYEXzBem5yJbT9p9Z/P1Yycniz2DvmGnonM1MtjY7jSERC1nl0PwHnBuu+VBwSmcuvyj9J+2clX4dxfZ0CUXseUHcdzdA4Za4DjawX8HBSLik9kw8fPab9ERAofEZ0aKsXDmdRjXrR71pLaUkcPHth4Rxk9EG+Bg0+Yb8/iVtSFM80mpQCKmR3ab8p8AO5aRuJyMYg5er3NICg5ZDCRtfLWyppqqP/vZONzz9rjEesmmbodZUFlzo38+mNOQvt7J7w==
+          root@helper.ocp4.rh.lab
+    storage:
+      files:
+      - contents:
+          source: data:,
+          verification: {}
+        filesystem: root
+        mode: 384
+        path: /etc/pki/ca-trust/source/anchors/openshift-config-user-ca-bundle.crt
+      - contents:
+          source: data:,r%20%2Fetc%2Fkubernetes%2Fcni%2Fnet.d%2F80-openshift-network.conf%0Ar%20%2Fetc%2Fkubernetes%2Fcni%2Fnet.d%2F10-ovn-kubernetes.conf%0Ad%20%2Frun%2Fmultus%2Fcni%2Fnet.d%2F%200755%20root%20root%20-%20-%0AD%20%2Fvar%2Flib%2Fcni%2Fnetworks%2Fopenshift-sdn%2F%200755%20root%20root%20-%20-%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/tmpfiles.d/cleanup-cni.conf
+      - contents:
+          source: data:,
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/kubernetes/static-pod-resources/configmaps/cloud-config/ca-bundle.pem
+      - contents:
+          source: data:,%23%20This%20file%20is%20generated%20by%20the%20Machine%20Config%20Operator's%20containerruntimeconfig%20controller.%0A%23%0A%23%20storage.conf%20is%20the%20configuration%20file%20for%20all%20tools%0A%23%20that%20share%20the%20containers%2Fstorage%20libraries%0A%23%20See%20man%205%20containers-storage.conf%20for%20more%20information%0A%23%20The%20%22container%20storage%22%20table%20contains%20all%20of%20the%20server%20options.%0A%5Bstorage%5D%0A%0A%23%20Default%20Storage%20Driver%0Adriver%20%3D%20%22overlay%22%0A%0A%23%20Temporary%20storage%20location%0Arunroot%20%3D%20%22%2Fvar%2Frun%2Fcontainers%2Fstorage%22%0A%0A%23%20Primary%20Read%2FWrite%20location%20of%20container%20storage%0Agraphroot%20%3D%20%22%2Fvar%2Flib%2Fcontainers%2Fstorage%22%0A%0A%5Bstorage.options%5D%0A%23%20Storage%20options%20to%20be%20passed%20to%20underlying%20storage%20drivers%0A%0A%23%20AdditionalImageStores%20is%20used%20to%20pass%20paths%20to%20additional%20Read%2FOnly%20image%20stores%0A%23%20Must%20be%20comma%20separated%20list.%0Aadditionalimagestores%20%3D%20%5B%0A%5D%0A%0A%23%20Size%20is%20used%20to%20set%20a%20maximum%20size%20of%20the%20container%20image.%20%20Only%20supported%20by%0A%23%20certain%20container%20storage%20drivers.%0Asize%20%3D%20%22%22%0A%0A%23%20OverrideKernelCheck%20tells%20the%20driver%20to%20ignore%20kernel%20checks%20based%20on%20kernel%20version%0Aoverride_kernel_check%20%3D%20%22true%22%0A%0A%23%20Remap-UIDs%2FGIDs%20is%20the%20mapping%20from%20UIDs%2FGIDs%20as%20they%20should%20appear%20inside%20of%0A%23%20a%20container%2C%20to%20UIDs%2FGIDs%20as%20they%20should%20appear%20outside%20of%20the%20container%2C%20and%0A%23%20the%20length%20of%20the%20range%20of%20UIDs%2FGIDs.%20%20Additional%20mapped%20sets%20can%20be%20listed%0A%23%20and%20will%20be%20heeded%20by%20libraries%2C%20but%20there%20are%20limits%20to%20the%20number%20of%0A%23%20mappings%20which%20the%20kernel%20will%20allow%20when%20you%20later%20attempt%20to%20run%20a%0A%23%20container.%0A%23%0A%23%20remap-uids%20%3D%200%3A1668442479%3A65536%0A%23%20remap-gids%20%3D%200%3A1668442479%3A65536%0A%0A%23%20Remap-User%2FGroup%20is%20a%20name%20which%20can%20be%20used%20to%20look%20up%20one%20or%20more%20UID%2FGID%0A%23%20ranges%20in%20the%20%2Fetc%2Fsubuid%20or%20%2Fetc%2Fsubgid%20file.%20%20Mappings%20are%20set%20up%20starting%0A%23%20with%20an%20in-container%20ID%20of%200%20and%20the%20a%20host-level%20ID%20taken%20from%20the%20lowest%0A%23%20range%20that%20matches%20the%20specified%20name%2C%20and%20using%20the%20length%20of%20that%20range.%0A%23%20Additional%20ranges%20are%20then%20assigned%2C%20using%20the%20ranges%20which%20specify%20the%0A%23%20lowest%20host-level%20IDs%20first%2C%20to%20the%20lowest%20not-yet-mapped%20container-level%20ID%2C%0A%23%20until%20all%20of%20the%20entries%20have%20been%20used%20for%20maps.%0A%23%0A%23%20remap-user%20%3D%20%22storage%22%0A%23%20remap-group%20%3D%20%22storage%22%0A%0A%5Bstorage.options.thinpool%5D%0A%23%20Storage%20Options%20for%20thinpool%0A%0A%23%20autoextend_percent%20determines%20the%20amount%20by%20which%20pool%20needs%20to%20be%0A%23%20grown.%20This%20is%20specified%20in%20terms%20of%20%25%20of%20pool%20size.%20So%20a%20value%20of%2020%20means%0A%23%20that%20when%20threshold%20is%20hit%2C%20pool%20will%20be%20grown%20by%2020%25%20of%20existing%0A%23%20pool%20size.%0A%23%20autoextend_percent%20%3D%20%2220%22%0A%0A%23%20autoextend_threshold%20determines%20the%20pool%20extension%20threshold%20in%20terms%0A%23%20of%20percentage%20of%20pool%20size.%20For%20example%2C%20if%20threshold%20is%2060%2C%20that%20means%20when%0A%23%20pool%20is%2060%25%20full%2C%20threshold%20has%20been%20hit.%0A%23%20autoextend_threshold%20%3D%20%2280%22%0A%0A%23%20basesize%20specifies%20the%20size%20to%20use%20when%20creating%20the%20base%20device%2C%20which%0A%23%20limits%20the%20size%20of%20images%20and%20containers.%0A%23%20basesize%20%3D%20%2210G%22%0A%0A%23%20blocksize%20specifies%20a%20custom%20blocksize%20to%20use%20for%20the%20thin%20pool.%0A%23%20blocksize%3D%2264k%22%0A%0A%23%20directlvm_device%20specifies%20a%20custom%20block%20storage%20device%20to%20use%20for%20the%0A%23%20thin%20pool.%20Required%20if%20you%20setup%20devicemapper%0A%23%20directlvm_device%20%3D%20%22%22%0A%0A%23%20directlvm_device_force%20wipes%20device%20even%20if%20device%20already%20has%20a%20filesystem%0A%23%20directlvm_device_force%20%3D%20%22True%22%0A%0A%23%20fs%20specifies%20the%20filesystem%20type%20to%20use%20for%20the%20base%20device.%0A%23%20fs%3D%22xfs%22%0A%0A%23%20log_level%20sets%20the%20log%20level%20of%20devicemapper.%0A%23%200%3A%20LogLevelSuppress%200%20(Default)%0A%23%202%3A%20LogLevelFatal%0A%23%203%3A%20LogLevelErr%0A%23%204%3A%20LogLevelWarn%0A%23%205%3A%20LogLevelNotice%0A%23%206%3A%20LogLevelInfo%0A%23%207%3A%20LogLevelDebug%0A%23%20log_level%20%3D%20%227%22%0A%0A%23%20min_free_space%20specifies%20the%20min%20free%20space%20percent%20in%20a%20thin%20pool%20require%20for%0A%23%20new%20device%20creation%20to%20succeed.%20Valid%20values%20are%20from%200%25%20-%2099%25.%0A%23%20Value%200%25%20disables%0A%23%20min_free_space%20%3D%20%2210%25%22%0A%0A%23%20mkfsarg%20specifies%20extra%20mkfs%20arguments%20to%20be%20used%20when%20creating%20the%20base%0A%23%20device.%0A%23%20mkfsarg%20%3D%20%22%22%0A%0A%23%20mountopt%20specifies%20extra%20mount%20options%20used%20when%20mounting%20the%20thin%20devices.%0A%23%20mountopt%20%3D%20%22%22%0A%0A%23%20use_deferred_removal%20Marking%20device%20for%20deferred%20removal%0A%23%20use_deferred_removal%20%3D%20%22True%22%0A%0A%23%20use_deferred_deletion%20Marking%20device%20for%20deferred%20deletion%0A%23%20use_deferred_deletion%20%3D%20%22True%22%0A%0A%23%20xfs_nospace_max_retries%20specifies%20the%20maximum%20number%20of%20retries%20XFS%20should%0A%23%20attempt%20to%20complete%20IO%20when%20ENOSPC%20(no%20space)%20error%20is%20returned%20by%0A%23%20underlying%20storage%20device.%0A%23%20xfs_nospace_max_retries%20%3D%20%220%22%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/containers/storage.conf
+      - contents:
+          source: data:,
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/systemd/system/crio.service.d/10-default-env.conf
+      - contents:
+          source: data:,
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/systemd/system/kubelet.service.d/10-default-env.conf
+      - contents:
+          source: data:,
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/systemd/system/machine-config-daemon-host.service.d/10-default-env.conf
+      - contents:
+          source: data:,
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/systemd/system/pivot.service.d/10-default-env.conf
+      - contents:
+          source: data:,-----BEGIN%20CERTIFICATE-----%0AMIIDMDCCAhigAwIBAgIIL3pJE3Cnn3cwDQYJKoZIhvcNAQELBQAwNjESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MSAwHgYDVQQDExdhZG1pbi1rdWJlY29uZmlnLXNpZ25lcjAe%0AFw0yMDA0MDIwODI0MTRaFw0zMDAzMzEwODI0MTRaMDYxEjAQBgNVBAsTCW9wZW5z%0AaGlmdDEgMB4GA1UEAxMXYWRtaW4ta3ViZWNvbmZpZy1zaWduZXIwggEiMA0GCSqG%0ASIb3DQEBAQUAA4IBDwAwggEKAoIBAQDSvzQhYnWZ7n5cgI%2Fjsb4pgJsRwey3GLwA%0AHnhi0BFK24HRmkWRPKFzqDnuEPID9D94EEjgFZX8wRR8W4opqaTD%2FOiXB1cBB20n%0AwxYmxLTb%2BtvRzeY1LGRYDP30rTJWsDHl7LJpNuMbxwmoE%2Bol%2Bq%2BXl0m%2FhXCXbm%2FQ%0A%2Fg9wdAhjiWV7SrklR1CBB3hNpeiSIUzzyX0CVnjEuQQOjmxOyYOIm%2FYfElIgajFp%0AWQ9yopi1y2YKNLKeOVBw8a3z%2FUl6IwCPmIYZwgbV3Jn8Tf%2FMXVHgSwrONegIdbxq%0AzOHSNaEKwni06osws4DPQZqEUKGFbFNrEvyaBrpiP3ZX0mdv00vxAgMBAAGjQjBA%0AMA4GA1UdDwEB%2FwQEAwICpDAPBgNVHRMBAf8EBTADAQH%2FMB0GA1UdDgQWBBR8caTr%0ArX2Rzid4T7jCGfZF5YQmITANBgkqhkiG9w0BAQsFAAOCAQEAbRKPCKceIHqc%2BS3U%0AyOkxtE6mwDqPdB%2FnL9MV%2BHzf1md9%2BAZkTdb0dPBA42gSAbp6dwYigfvTkUIHO1DM%0ADceVt8MPDX1IdguKxiZOxrkajEwPFDROcMxfN79tgyFyYNYXaBPojlUjTcW9tZ2F%0AH19dH%2BZ9NWmgsKGrRmKKcoUESVbKsTb6Jq3dA5u%2B4JOJEJ%2FpfSW5gf0SZ3d9OOq%2F%0AU9%2BYoUW022A47IKFj35xXtblPj%2FbHijGNpUoDNLFgYegs2%2BEtKa2743A2pe6g75M%0AtmHtyb3nsL5hjwjeWyK%2FnnB%2BqNHKflEtDCF52TlL9vIYm43cCJ%2FRBYk3%2BU44abl0%0AaDj%2FVw%3D%3D%0A-----END%20CERTIFICATE-----%0A-----BEGIN%20CERTIFICATE-----%0AMIIDHjCCAgagAwIBAgIIX4mYcM4kQQAwDQYJKoZIhvcNAQELBQAwLTESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MRcwFQYDVQQDEw5rdWJlbGV0LXNpZ25lcjAeFw0yMDA0MDIw%0AODI0MThaFw0yMDA0MDMwODI0MThaMC0xEjAQBgNVBAsTCW9wZW5zaGlmdDEXMBUG%0AA1UEAxMOa3ViZWxldC1zaWduZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK%0AAoIBAQC2cqWWLwcRqX0yh0%2BCwDMT6lIlNwGDarq%2BlEqqdZJIFAD1iyyMBFyuY2tU%0Anmc72AxXKBTc%2BR2kXH%2BWJpWQIfaU3ML0tParI%2FSFptglNqvS5Uz3P%2FGAgIN2wTrr%0Aqru4w21KL%2FdfzKCqs%2FVIfRw0JaEhwWp5iKILvB5u2MgYE8zsavoVaCL6aqL7Xmvb%0AQ2yg1IXKfR5bfxjrx11Sbyt1T9FYiO4iDkYmXAdfVbdvJM5V5%2BcUVRDUudq73zFl%0AqLZ0fDxth6K8%2F%2F1t3XlFYQBPqWVkgx0sz7J8m5HY4xpyo5bcEtMpfOkBdQRq9jE%2F%0AjUp23vGcuHrC1T2xSgZO8Do2ITKfAgMBAAGjQjBAMA4GA1UdDwEB%2FwQEAwICpDAP%0ABgNVHRMBAf8EBTADAQH%2FMB0GA1UdDgQWBBTWdXLJw3DdMg9YwpMKGFZQ0pqm0DAN%0ABgkqhkiG9w0BAQsFAAOCAQEAU6HuVAQl4p6mqwpq1N%2BzqWDgITdktR7j4JcjUp%2F9%0AAeXjjxhIEpQTNiM3aP6RQccTkhp2IoqalRCU8FU4bj%2FQqvRswlpCioGhy9kwNumR%0AV9TvjTYzmtLAJFu7MfW6cPAh8J4V1%2FRAv90ur6%2B76PI4z%2F9tVa9QEwHtr9eHkJIS%0AJTqVEUN4gcC956suXh87VCT%2FI8PWugOajXJXCk6L9KKtPcJH6462W1OPcF%2F18cpO%0AeqjJh2l4wEpB0Dbsb1q7xq4hfrx8K%2B10r1LX9EJbaiXb0DHU%2FL%2BjBtGkhlHw83uR%0AAvHlbP78fLLY5hjUQht8sQDpUfcuGbGJHV4%2BVq1QgrRfVA%3D%3D%0A-----END%20CERTIFICATE-----%0A-----BEGIN%20CERTIFICATE-----%0AMIIDNDCCAhygAwIBAgIIRRu0JvpHIZowDQYJKoZIhvcNAQELBQAwODESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MSIwIAYDVQQDExlrdWJlLWNvbnRyb2wtcGxhbmUtc2lnbmVy%0AMB4XDTIwMDQwMjA4MjQyMFoXDTIxMDQwMjA4MjQyMFowODESMBAGA1UECxMJb3Bl%0AbnNoaWZ0MSIwIAYDVQQDExlrdWJlLWNvbnRyb2wtcGxhbmUtc2lnbmVyMIIBIjAN%0ABgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp9Lm4dYYeSqR41EwGeMLFdxQSnbT%0ANp82giYyJ4mVNFDKLcPIGayGTBI71W0VuMef1i0KbUcliWq%2Bq8w%2BQJcqGhcHqqpP%0A7tMtKSBvzlHOu%2BWixg0EkDYpM3%2BaEDNf87H5jBYu3GoHzZN%2FLR4cK48%2Fv%2FYSW%2B7H%0AOb7qmbnALgL%2Bay2dBfQ7AI6RUJZXfnB%2FK0PiSj14f8xRoxGIC9EXw19vVwEpxBDI%0ArIjVy33b39au2h4GbD0%2F%2Fy1OvceXW2W9nVuwIFc1buL38EEr0xAcHZloE5GvA6LZ%0ADCpNc8%2Fgu3aLTE%2BvfuA%2BVe0xRRBE76tdmGYWD09nCUCokZ4mkigzLNEaqQIDAQAB%0Ao0IwQDAOBgNVHQ8BAf8EBAMCAqQwDwYDVR0TAQH%2FBAUwAwEB%2FzAdBgNVHQ4EFgQU%0A0LD7EXursRT9yI9%2Fj7Ko%2BglYvogwDQYJKoZIhvcNAQELBQADggEBAA7DqMLpjcjQ%0AyXX1OSMSbGtrZrT%2FOvTczdE6cG16dpiGvnW94XxDboGsylb%2BrYgxqqOFFMHogC7X%0AHIofkDy6PRAYGK%2BN%2FkJc1ERj8JyQQFgY%2FiGq7%2B8%2F3Y8073XYArkhWuDzaPfoSAy7%0Aq0A5eB3p5TLljNQ5IluK7KMd8T3H8dFRiN7TGQgkZdSlzNDNS5XEHo5vSquywKYz%0AvelZRCTy1fuRvMZ6CJhJLYqKSLyhxm%2FSJSO4YZKbtX9TyLxAPsGV%2FjMCb0jfctUQ%0AcGRrij5wjgEgt%2BSwzGvNvsYdlhdS%2BDdEYce8HnQWmVifDKatfeBIp3Sh%2BmVV2y%2Ft%0AMtU91qUgL%2BE%3D%0A-----END%20CERTIFICATE-----%0A-----BEGIN%20CERTIFICATE-----%0AMIIDQjCCAiqgAwIBAgIIPSPiJAFbPjMwDQYJKoZIhvcNAQELBQAwPzESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MSkwJwYDVQQDEyBrdWJlLWFwaXNlcnZlci10by1rdWJlbGV0%0ALXNpZ25lcjAeFw0yMDA0MDIwODI0MjBaFw0yMTA0MDIwODI0MjBaMD8xEjAQBgNV%0ABAsTCW9wZW5zaGlmdDEpMCcGA1UEAxMga3ViZS1hcGlzZXJ2ZXItdG8ta3ViZWxl%0AdC1zaWduZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDKtoq6yG7y%0AeSVWKaWL5ODEcEC64JrKG2JJjOyV6zZEKWqRkkFvRO6pmhGrlskitM4RkGafS4ob%0AqtEzKLMuFreP1MACH86LkjZMSaAc7%2FvRxM7SOzmtnekqk%2FEdrATOb0epiqmJQ4t3%0AZ%2FfFAThoF05pmh%2B9g2kBDNIscVheCwjavehuvglcjZ8Pn6sRPodzEfNUftWrlKQK%0AtfSz9NJ4dIt8HLM81gZA3hoOViQSFfY7Zb4U5mlUUFvafVakACIIe2pGOxlvchOo%0APN6d4O8HLFl%2BIIlndv6Nys%2Br2PZaZB0HpTkpl3sx6IrAd4Q7yOtos64SsSc%2FO%2B63%0A2sj6IitOV0ypAgMBAAGjQjBAMA4GA1UdDwEB%2FwQEAwICpDAPBgNVHRMBAf8EBTAD%0AAQH%2FMB0GA1UdDgQWBBTYRn62vcPmFJbV14rkvGHbWMcF3DANBgkqhkiG9w0BAQsF%0AAAOCAQEAM816Re5j78Z4Xk%2Fe6182kgfOOBbTy30%2BEPjrNk6kv9gwbW5u1aUVEv4K%0AaKVHwpgD4Cq9YgHknwn7B1jKPKNU9SnlnSCPYVhEJ3iHqjnQtFvo9PBO%2Fk8TCj5T%0Agwq2GILKSkZyNO2z5bv2abYIjQmqyW52BDsL84K2sv8OP5QvGEDEwqG9cYwRS7Oc%0A%2FCfJPV7FPT98H9Jd53jW7YmXOBDBqK%2FqwvkOB%2B%2BOnZIO7wYfPs2UpFqQxAAk6%2Fj5%0ATNPltoiCVaGulreA5VH3llE6%2FvOOagbN3Y8rKbjk15Y1NruR17dnmp50kDZf3vK2%0A930giF5VRVfzOb2RyQy6IWvMkIf4BA%3D%3D%0A-----END%20CERTIFICATE-----%0A-----BEGIN%20CERTIFICATE-----%0AMIIDSDCCAjCgAwIBAgIIKG%2BA2m1leSQwDQYJKoZIhvcNAQELBQAwQjESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MSwwKgYDVQQDEyNrdWJlbGV0LWJvb3RzdHJhcC1rdWJlY29u%0AZmlnLXNpZ25lcjAeFw0yMDA0MDIwODI0MTVaFw0zMDAzMzEwODI0MTVaMEIxEjAQ%0ABgNVBAsTCW9wZW5zaGlmdDEsMCoGA1UEAxMja3ViZWxldC1ib290c3RyYXAta3Vi%0AZWNvbmZpZy1zaWduZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDF%0ADRjTyrofc0%2BbymWzuYQmM7t7rTywcNvRe14SgMZulgSL7YMN55ASMU9xVFqCm4Tm%0A3ND8JudLOJEiQls1sgNe6XObPe5uRpEURT4uUbpzuehrTApSobg60aAeejocInWK%0A%2BDkvXyLImM6CQLIzkQm7B7ZmIB4DSIH0pISN4dRTZ0UxXRihy9K0j7b0stlcUxh%2B%0AMQ3BtklHhKH8o%2BZb5O78oEtcW4AFwFtjLhvsR5zVAW1ww3p4jSwvn501mUUw5sDe%0AmkN1g5atc%2Bp7s1XSYgsViotjhIDjGLks6yu8FdjHnSvrQc0CMT8PeSoCW7FQPfnG%0A%2Bd%2FkAYRDD5WD1WWTPQQtAgMBAAGjQjBAMA4GA1UdDwEB%2FwQEAwICpDAPBgNVHRMB%0AAf8EBTADAQH%2FMB0GA1UdDgQWBBQ%2B44kInE2kJgrCE1NKaf%2Bg6w2pWTANBgkqhkiG%0A9w0BAQsFAAOCAQEAVlXmRCfM%2Fn9UFcX%2FrxBJpcrPCDd8iCamkXFafm%2BL0NBkKebw%0AcFzoVT%2FQdpmhszjIY1Hg9ZNBZLrJEKv9iyFn9Gha0Yei%2F0PjXgEnLnEjl7bvXm3Z%0Ayh2YpIEFejukU07c2ui75zDMQWidTuu%2BalgCjoJt0Eh%2FjF17%2FnekSnvhKOVUryuK%0APBIsASgzQz4pfGoFHf1nUDrD5O5io%2FdlG1Va3nhsrNkD3chJ0%2FS5%2FwPoj38JBuA2%0AdfMI1AphkYaycUj0u6hBdE7xMztdQibO5ELdZvQ4jqYDvbIjmXgbP5UgpoikQtAj%0A4RU0st75v3txwWs0qT7d0v6qQqmMrpfAHYklQg%3D%3D%0A-----END%20CERTIFICATE-----%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/kubernetes/kubelet-ca.crt
+      - contents:
+          source: data:,%23%20Turning%20on%20Accounting%20helps%20track%20down%20performance%20issues.%0A%5BManager%5D%0ADefaultCPUAccounting%3Dyes%0ADefaultMemoryAccounting%3Dyes%0ADefaultBlockIOAccounting%3Dyes%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/systemd/system.conf.d/kubelet-cgroups.conf
+      - contents:
+          source: data:,%23%20ignore%20known%20SDN-managed%20devices%0A%5Bdevice%5D%0Amatch-device%3Dinterface-name%3Abr-int%3Binterface-name%3Abr-local%3Binterface-name%3Abr-nexthop%2Cinterface-name%3Aovn-k8s-*%2Cinterface-name%3Ak8s-*%3Binterface-name%3Atun0%3Binterface-name%3Abr0%3Bdriver%3Aveth%0Amanaged%3D0%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/NetworkManager/conf.d/sdn.conf
+      - contents:
+          source: data:,%7B%22auths%22%3A%7B%22cloud.openshift.com%22%3A%7B%22auth%22%3A%22b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K3BtYW1vbnRvMWh3Ym15cnFqcTNtN3JrbW5vZGZoenhqc3BnOlhOQVFPMUVFNEowNFpHRzdKNzlBTzk2NldaMkdURUNEOFUwNTBKUFowSkdDRzk5UUJaMU5UTFNFNjhYT1FSRk4%3D%22%2C%22email%22%3A%22pmamonto%40redhat.com%22%7D%2C%22quay.io%22%3A%7B%22auth%22%3A%22b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K3BtYW1vbnRvMWh3Ym15cnFqcTNtN3JrbW5vZGZoenhqc3BnOlhOQVFPMUVFNEowNFpHRzdKNzlBTzk2NldaMkdURUNEOFUwNTBKUFowSkdDRzk5UUJaMU5UTFNFNjhYT1FSRk4%3D%22%2C%22email%22%3A%22pmamonto%40redhat.com%22%7D%2C%22registry.connect.redhat.com%22%3A%7B%22auth%22%3A%22NTIyODY5MDF8dWhjLTFIV2JNeXJxanEzTTdSS01uT2RmSHp4SnNwRzpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSTBaV1V4TURrMk1XSmhOMk0wWW1SaU9UZGtaRFl4TkRsa05UY3dORGN6T0NKOS5WbzVTV3V1UC1WYXNjeHZETHNCQkNmTGwtajB6ZFItbWpoMFVaRDBRZnJYWTJYbGoxMEV0UENGVXNfa2VXa3VTaEJpbWVkTl9RQVV2QldPM2x0ZHM3a2djVWR1V1VqSU5uTXpRTkFRQ2VoZWRVOHJpX2VPUEZmQ1dPeFA3bG0zSXVNZFloVHhoaG5faVZGWEZGeUxuZ3U4R29QMEFkeUJud1F2QS1vUnhsY3poMHZ6LXpienlQVVVEc0JVMHhqSVlxa0FZZG5zZnVGNTRDVmtJc3ZjZWtQX0NidWNXazN6eWxzWndFVlVHZld1QjR4TWdUSU1NdjEzSVpuZWVHZGQ1ajlDQ1hqOWIyalU1WkE3aV9HSG5BdUhJa2YySDZDYXBnSUdoR0RSZFlkYkk3V19zaUJCbjQ3UGZlRi1QYWVoZjR2SHpZODlialpfZ0dteWVTNE5GQVNPUVVqcVJwTE5rUzBTTkRlc1MxZ1Bvc2U5S3NfaXpGbElxVmFhdTBTaHZGQ0Y4NUZ3WGlwZTNYU3Bha2hVLUx4SkdSX2w3UHp3NjdvelIwdmZhTDBJY19EblRiRGxXZ210eENRUTg1SU0yWHloZDZxYVJhVWdnN0tINWMtalVDRmJzS19iNkNpOFdqcEJudjNrM0hrbm9vMUpEaTJya1VwLUsxRWwtYURpSEp3Q2ZmSU5kdUxCOC1BOVBDQ0NCV3ozYkQ2MjlMOVJsbUNGeXhjZzdJdHVoUnI4cHhmTl9waEI0bHFRcEVsanF6eXprMTJZeF9mOGRna0tTU3VJXzhjYnFXT04xN3ZDdTNyOVczUThzTlZiMzBtMUxUWUdiZm1UWXFTYl9VeHFZQkhyNklkLTFTR05udXNWcGlXX09vWHIxSkd0OVRJd1JQMjFmSGVjWGgxSQ%3D%3D%22%2C%22email%22%3A%22pmamonto%40redhat.com%22%7D%2C%22registry.redhat.io%22%3A%7B%22auth%22%3A%22NTIyODY5MDF8dWhjLTFIV2JNeXJxanEzTTdSS01uT2RmSHp4SnNwRzpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSTBaV1V4TURrMk1XSmhOMk0wWW1SaU9UZGtaRFl4TkRsa05UY3dORGN6T0NKOS5WbzVTV3V1UC1WYXNjeHZETHNCQkNmTGwtajB6ZFItbWpoMFVaRDBRZnJYWTJYbGoxMEV0UENGVXNfa2VXa3VTaEJpbWVkTl9RQVV2QldPM2x0ZHM3a2djVWR1V1VqSU5uTXpRTkFRQ2VoZWRVOHJpX2VPUEZmQ1dPeFA3bG0zSXVNZFloVHhoaG5faVZGWEZGeUxuZ3U4R29QMEFkeUJud1F2QS1vUnhsY3poMHZ6LXpienlQVVVEc0JVMHhqSVlxa0FZZG5zZnVGNTRDVmtJc3ZjZWtQX0NidWNXazN6eWxzWndFVlVHZld1QjR4TWdUSU1NdjEzSVpuZWVHZGQ1ajlDQ1hqOWIyalU1WkE3aV9HSG5BdUhJa2YySDZDYXBnSUdoR0RSZFlkYkk3V19zaUJCbjQ3UGZlRi1QYWVoZjR2SHpZODlialpfZ0dteWVTNE5GQVNPUVVqcVJwTE5rUzBTTkRlc1MxZ1Bvc2U5S3NfaXpGbElxVmFhdTBTaHZGQ0Y4NUZ3WGlwZTNYU3Bha2hVLUx4SkdSX2w3UHp3NjdvelIwdmZhTDBJY19EblRiRGxXZ210eENRUTg1SU0yWHloZDZxYVJhVWdnN0tINWMtalVDRmJzS19iNkNpOFdqcEJudjNrM0hrbm9vMUpEaTJya1VwLUsxRWwtYURpSEp3Q2ZmSU5kdUxCOC1BOVBDQ0NCV3ozYkQ2MjlMOVJsbUNGeXhjZzdJdHVoUnI4cHhmTl9waEI0bHFRcEVsanF6eXprMTJZeF9mOGRna0tTU3VJXzhjYnFXT04xN3ZDdTNyOVczUThzTlZiMzBtMUxUWUdiZm1UWXFTYl9VeHFZQkhyNklkLTFTR05udXNWcGlXX09vWHIxSkd0OVRJd1JQMjFmSGVjWGgxSQ%3D%3D%22%2C%22email%22%3A%22pmamonto%40redhat.com%22%7D%7D%7D%0A
+          verification: {}
+        filesystem: root
+        mode: 384
+        path: /var/lib/kubelet/config.json
+      - contents:
+          source: data:,-----BEGIN%20CERTIFICATE-----%0AMIIDEDCCAfigAwIBAgIIW%2BmlEnrDAc8wDQYJKoZIhvcNAQELBQAwJjESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MRAwDgYDVQQDEwdyb290LWNhMB4XDTIwMDQwMjA4MjM0MVoX%0ADTMwMDMzMTA4MjM0MVowJjESMBAGA1UECxMJb3BlbnNoaWZ0MRAwDgYDVQQDEwdy%0Ab290LWNhMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4r28aTNV0Wth%0ADpAlyEfRxQOhEV3heie9v4r3340nJgGRSlxsF%2BN324BYJ%2Bm07WvyazM4RFxigdQR%0A%2BpH5gVFI%2FiogKYS2f%2B7w3kiKPlCsA4vOk29pGzs4BKPXLvr9NF3qz54%2BFoW4TR9Y%0A9KL144Zjrt5oPdnoFnfIC8I08caQTB9EegFlr6aE7DM37qwVfpPzJEueLhNB4EkV%0ArK9GXuRCMlhk5IEgo76hQZlitAQBMw78OvzT4X8UyK%2FFvWDDFtWTNyXVTnjG%2Byoz%0Ain73HJKIVLtv6a5d6uyT098p96hf6S0QC6JJIrfUy52FM7nCYtl9mcLafIzeZyHs%0A8ajUnyiwmQIDAQABo0IwQDAOBgNVHQ8BAf8EBAMCAqQwDwYDVR0TAQH%2FBAUwAwEB%0A%2FzAdBgNVHQ4EFgQU8bCAPyP1CxcntTpiCiP2OhujksQwDQYJKoZIhvcNAQELBQAD%0AggEBAAIySzUgApJI6kjQxN8CaysNrmqVoKpCpBs78MPju4WASTSi%2FW0d6637MsV4%0Ab2ckjUf1RHnMYmKCUadve2ZAV80ONwSv%2FSYuyYIbyrdZPs0uxyrYtkrK1IQPvHuN%0ABRDBz9ZZTq%2BCqg%2BDsLDf58NHCk36N7XsrvWeaeU9LRT1IleKD%2BayujUQeddTkqAr%0ARZLmaknLjNxipm2mt2jLTXgopBIUkWKjii3f3WlvNjDqSKbGb%2Bjo%2BN0iRei77%2F5P%0Ao6NZ0ilWq7XN33NugJVtIP67%2FA9H7xHra0fJcO%2FB8JSNy1M3kvdcN9DNtE1i2SXH%0A7ICzd2hn3Ud87vlDDcIvXQ6RFaA%3D%0A-----END%20CERTIFICATE-----%0A-----BEGIN%20CERTIFICATE-----%0AMIIDMDCCAhigAwIBAgIIL3pJE3Cnn3cwDQYJKoZIhvcNAQELBQAwNjESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MSAwHgYDVQQDExdhZG1pbi1rdWJlY29uZmlnLXNpZ25lcjAe%0AFw0yMDA0MDIwODI0MTRaFw0zMDAzMzEwODI0MTRaMDYxEjAQBgNVBAsTCW9wZW5z%0AaGlmdDEgMB4GA1UEAxMXYWRtaW4ta3ViZWNvbmZpZy1zaWduZXIwggEiMA0GCSqG%0ASIb3DQEBAQUAA4IBDwAwggEKAoIBAQDSvzQhYnWZ7n5cgI%2Fjsb4pgJsRwey3GLwA%0AHnhi0BFK24HRmkWRPKFzqDnuEPID9D94EEjgFZX8wRR8W4opqaTD%2FOiXB1cBB20n%0AwxYmxLTb%2BtvRzeY1LGRYDP30rTJWsDHl7LJpNuMbxwmoE%2Bol%2Bq%2BXl0m%2FhXCXbm%2FQ%0A%2Fg9wdAhjiWV7SrklR1CBB3hNpeiSIUzzyX0CVnjEuQQOjmxOyYOIm%2FYfElIgajFp%0AWQ9yopi1y2YKNLKeOVBw8a3z%2FUl6IwCPmIYZwgbV3Jn8Tf%2FMXVHgSwrONegIdbxq%0AzOHSNaEKwni06osws4DPQZqEUKGFbFNrEvyaBrpiP3ZX0mdv00vxAgMBAAGjQjBA%0AMA4GA1UdDwEB%2FwQEAwICpDAPBgNVHRMBAf8EBTADAQH%2FMB0GA1UdDgQWBBR8caTr%0ArX2Rzid4T7jCGfZF5YQmITANBgkqhkiG9w0BAQsFAAOCAQEAbRKPCKceIHqc%2BS3U%0AyOkxtE6mwDqPdB%2FnL9MV%2BHzf1md9%2BAZkTdb0dPBA42gSAbp6dwYigfvTkUIHO1DM%0ADceVt8MPDX1IdguKxiZOxrkajEwPFDROcMxfN79tgyFyYNYXaBPojlUjTcW9tZ2F%0AH19dH%2BZ9NWmgsKGrRmKKcoUESVbKsTb6Jq3dA5u%2B4JOJEJ%2FpfSW5gf0SZ3d9OOq%2F%0AU9%2BYoUW022A47IKFj35xXtblPj%2FbHijGNpUoDNLFgYegs2%2BEtKa2743A2pe6g75M%0AtmHtyb3nsL5hjwjeWyK%2FnnB%2BqNHKflEtDCF52TlL9vIYm43cCJ%2FRBYk3%2BU44abl0%0AaDj%2FVw%3D%3D%0A-----END%20CERTIFICATE-----%0A-----BEGIN%20CERTIFICATE-----%0AMIIDHjCCAgagAwIBAgIIX4mYcM4kQQAwDQYJKoZIhvcNAQELBQAwLTESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MRcwFQYDVQQDEw5rdWJlbGV0LXNpZ25lcjAeFw0yMDA0MDIw%0AODI0MThaFw0yMDA0MDMwODI0MThaMC0xEjAQBgNVBAsTCW9wZW5zaGlmdDEXMBUG%0AA1UEAxMOa3ViZWxldC1zaWduZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK%0AAoIBAQC2cqWWLwcRqX0yh0%2BCwDMT6lIlNwGDarq%2BlEqqdZJIFAD1iyyMBFyuY2tU%0Anmc72AxXKBTc%2BR2kXH%2BWJpWQIfaU3ML0tParI%2FSFptglNqvS5Uz3P%2FGAgIN2wTrr%0Aqru4w21KL%2FdfzKCqs%2FVIfRw0JaEhwWp5iKILvB5u2MgYE8zsavoVaCL6aqL7Xmvb%0AQ2yg1IXKfR5bfxjrx11Sbyt1T9FYiO4iDkYmXAdfVbdvJM5V5%2BcUVRDUudq73zFl%0AqLZ0fDxth6K8%2F%2F1t3XlFYQBPqWVkgx0sz7J8m5HY4xpyo5bcEtMpfOkBdQRq9jE%2F%0AjUp23vGcuHrC1T2xSgZO8Do2ITKfAgMBAAGjQjBAMA4GA1UdDwEB%2FwQEAwICpDAP%0ABgNVHRMBAf8EBTADAQH%2FMB0GA1UdDgQWBBTWdXLJw3DdMg9YwpMKGFZQ0pqm0DAN%0ABgkqhkiG9w0BAQsFAAOCAQEAU6HuVAQl4p6mqwpq1N%2BzqWDgITdktR7j4JcjUp%2F9%0AAeXjjxhIEpQTNiM3aP6RQccTkhp2IoqalRCU8FU4bj%2FQqvRswlpCioGhy9kwNumR%0AV9TvjTYzmtLAJFu7MfW6cPAh8J4V1%2FRAv90ur6%2B76PI4z%2F9tVa9QEwHtr9eHkJIS%0AJTqVEUN4gcC956suXh87VCT%2FI8PWugOajXJXCk6L9KKtPcJH6462W1OPcF%2F18cpO%0AeqjJh2l4wEpB0Dbsb1q7xq4hfrx8K%2B10r1LX9EJbaiXb0DHU%2FL%2BjBtGkhlHw83uR%0AAvHlbP78fLLY5hjUQht8sQDpUfcuGbGJHV4%2BVq1QgrRfVA%3D%3D%0A-----END%20CERTIFICATE-----%0A-----BEGIN%20CERTIFICATE-----%0AMIIDNDCCAhygAwIBAgIIRRu0JvpHIZowDQYJKoZIhvcNAQELBQAwODESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MSIwIAYDVQQDExlrdWJlLWNvbnRyb2wtcGxhbmUtc2lnbmVy%0AMB4XDTIwMDQwMjA4MjQyMFoXDTIxMDQwMjA4MjQyMFowODESMBAGA1UECxMJb3Bl%0AbnNoaWZ0MSIwIAYDVQQDExlrdWJlLWNvbnRyb2wtcGxhbmUtc2lnbmVyMIIBIjAN%0ABgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp9Lm4dYYeSqR41EwGeMLFdxQSnbT%0ANp82giYyJ4mVNFDKLcPIGayGTBI71W0VuMef1i0KbUcliWq%2Bq8w%2BQJcqGhcHqqpP%0A7tMtKSBvzlHOu%2BWixg0EkDYpM3%2BaEDNf87H5jBYu3GoHzZN%2FLR4cK48%2Fv%2FYSW%2B7H%0AOb7qmbnALgL%2Bay2dBfQ7AI6RUJZXfnB%2FK0PiSj14f8xRoxGIC9EXw19vVwEpxBDI%0ArIjVy33b39au2h4GbD0%2F%2Fy1OvceXW2W9nVuwIFc1buL38EEr0xAcHZloE5GvA6LZ%0ADCpNc8%2Fgu3aLTE%2BvfuA%2BVe0xRRBE76tdmGYWD09nCUCokZ4mkigzLNEaqQIDAQAB%0Ao0IwQDAOBgNVHQ8BAf8EBAMCAqQwDwYDVR0TAQH%2FBAUwAwEB%2FzAdBgNVHQ4EFgQU%0A0LD7EXursRT9yI9%2Fj7Ko%2BglYvogwDQYJKoZIhvcNAQELBQADggEBAA7DqMLpjcjQ%0AyXX1OSMSbGtrZrT%2FOvTczdE6cG16dpiGvnW94XxDboGsylb%2BrYgxqqOFFMHogC7X%0AHIofkDy6PRAYGK%2BN%2FkJc1ERj8JyQQFgY%2FiGq7%2B8%2F3Y8073XYArkhWuDzaPfoSAy7%0Aq0A5eB3p5TLljNQ5IluK7KMd8T3H8dFRiN7TGQgkZdSlzNDNS5XEHo5vSquywKYz%0AvelZRCTy1fuRvMZ6CJhJLYqKSLyhxm%2FSJSO4YZKbtX9TyLxAPsGV%2FjMCb0jfctUQ%0AcGRrij5wjgEgt%2BSwzGvNvsYdlhdS%2BDdEYce8HnQWmVifDKatfeBIp3Sh%2BmVV2y%2Ft%0AMtU91qUgL%2BE%3D%0A-----END%20CERTIFICATE-----%0A-----BEGIN%20CERTIFICATE-----%0AMIIDQjCCAiqgAwIBAgIIPSPiJAFbPjMwDQYJKoZIhvcNAQELBQAwPzESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MSkwJwYDVQQDEyBrdWJlLWFwaXNlcnZlci10by1rdWJlbGV0%0ALXNpZ25lcjAeFw0yMDA0MDIwODI0MjBaFw0yMTA0MDIwODI0MjBaMD8xEjAQBgNV%0ABAsTCW9wZW5zaGlmdDEpMCcGA1UEAxMga3ViZS1hcGlzZXJ2ZXItdG8ta3ViZWxl%0AdC1zaWduZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDKtoq6yG7y%0AeSVWKaWL5ODEcEC64JrKG2JJjOyV6zZEKWqRkkFvRO6pmhGrlskitM4RkGafS4ob%0AqtEzKLMuFreP1MACH86LkjZMSaAc7%2FvRxM7SOzmtnekqk%2FEdrATOb0epiqmJQ4t3%0AZ%2FfFAThoF05pmh%2B9g2kBDNIscVheCwjavehuvglcjZ8Pn6sRPodzEfNUftWrlKQK%0AtfSz9NJ4dIt8HLM81gZA3hoOViQSFfY7Zb4U5mlUUFvafVakACIIe2pGOxlvchOo%0APN6d4O8HLFl%2BIIlndv6Nys%2Br2PZaZB0HpTkpl3sx6IrAd4Q7yOtos64SsSc%2FO%2B63%0A2sj6IitOV0ypAgMBAAGjQjBAMA4GA1UdDwEB%2FwQEAwICpDAPBgNVHRMBAf8EBTAD%0AAQH%2FMB0GA1UdDgQWBBTYRn62vcPmFJbV14rkvGHbWMcF3DANBgkqhkiG9w0BAQsF%0AAAOCAQEAM816Re5j78Z4Xk%2Fe6182kgfOOBbTy30%2BEPjrNk6kv9gwbW5u1aUVEv4K%0AaKVHwpgD4Cq9YgHknwn7B1jKPKNU9SnlnSCPYVhEJ3iHqjnQtFvo9PBO%2Fk8TCj5T%0Agwq2GILKSkZyNO2z5bv2abYIjQmqyW52BDsL84K2sv8OP5QvGEDEwqG9cYwRS7Oc%0A%2FCfJPV7FPT98H9Jd53jW7YmXOBDBqK%2FqwvkOB%2B%2BOnZIO7wYfPs2UpFqQxAAk6%2Fj5%0ATNPltoiCVaGulreA5VH3llE6%2FvOOagbN3Y8rKbjk15Y1NruR17dnmp50kDZf3vK2%0A930giF5VRVfzOb2RyQy6IWvMkIf4BA%3D%3D%0A-----END%20CERTIFICATE-----%0A-----BEGIN%20CERTIFICATE-----%0AMIIDSDCCAjCgAwIBAgIIKG%2BA2m1leSQwDQYJKoZIhvcNAQELBQAwQjESMBAGA1UE%0ACxMJb3BlbnNoaWZ0MSwwKgYDVQQDEyNrdWJlbGV0LWJvb3RzdHJhcC1rdWJlY29u%0AZmlnLXNpZ25lcjAeFw0yMDA0MDIwODI0MTVaFw0zMDAzMzEwODI0MTVaMEIxEjAQ%0ABgNVBAsTCW9wZW5zaGlmdDEsMCoGA1UEAxMja3ViZWxldC1ib290c3RyYXAta3Vi%0AZWNvbmZpZy1zaWduZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDF%0ADRjTyrofc0%2BbymWzuYQmM7t7rTywcNvRe14SgMZulgSL7YMN55ASMU9xVFqCm4Tm%0A3ND8JudLOJEiQls1sgNe6XObPe5uRpEURT4uUbpzuehrTApSobg60aAeejocInWK%0A%2BDkvXyLImM6CQLIzkQm7B7ZmIB4DSIH0pISN4dRTZ0UxXRihy9K0j7b0stlcUxh%2B%0AMQ3BtklHhKH8o%2BZb5O78oEtcW4AFwFtjLhvsR5zVAW1ww3p4jSwvn501mUUw5sDe%0AmkN1g5atc%2Bp7s1XSYgsViotjhIDjGLks6yu8FdjHnSvrQc0CMT8PeSoCW7FQPfnG%0A%2Bd%2FkAYRDD5WD1WWTPQQtAgMBAAGjQjBAMA4GA1UdDwEB%2FwQEAwICpDAPBgNVHRMB%0AAf8EBTADAQH%2FMB0GA1UdDgQWBBQ%2B44kInE2kJgrCE1NKaf%2Bg6w2pWTANBgkqhkiG%0A9w0BAQsFAAOCAQEAVlXmRCfM%2Fn9UFcX%2FrxBJpcrPCDd8iCamkXFafm%2BL0NBkKebw%0AcFzoVT%2FQdpmhszjIY1Hg9ZNBZLrJEKv9iyFn9Gha0Yei%2F0PjXgEnLnEjl7bvXm3Z%0Ayh2YpIEFejukU07c2ui75zDMQWidTuu%2BalgCjoJt0Eh%2FjF17%2FnekSnvhKOVUryuK%0APBIsASgzQz4pfGoFHf1nUDrD5O5io%2FdlG1Va3nhsrNkD3chJ0%2FS5%2FwPoj38JBuA2%0AdfMI1AphkYaycUj0u6hBdE7xMztdQibO5ELdZvQ4jqYDvbIjmXgbP5UgpoikQtAj%0A4RU0st75v3txwWs0qT7d0v6qQqmMrpfAHYklQg%3D%3D%0A-----END%20CERTIFICATE-----%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/kubernetes/ca.crt
+      - contents:
+          source: data:,net.ipv4.ip_forward%20%3D%201%0Anet.ipv6.conf.all.forwarding%20%3D%201%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/sysctl.d/forward.conf
+      - contents:
+          source: data:,%0Afs.inotify.max_user_watches%20%3D%2065536%0Afs.inotify.max_user_instances%20%3D%208192%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/sysctl.d/inotify.conf
+      - contents:
+          source: data:,
+          verification: {}
+        filesystem: root
+        mode: 493
+        path: /etc/kubernetes/kubelet-plugins/volume/exec/.dummy
+      - contents:
+          source: data:,unqualified-search-registries%20%3D%20%5B'registry.access.redhat.com'%2C%20'docker.io'%5D%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/containers/registries.conf
+      - contents:
+          source: data:,%5Bcrio%5D%0A%0A%23%20The%20default%20log%20directory%20where%20all%20logs%20will%20go%20unless%20directly%20specified%20by%0A%23%20the%20kubelet.%20The%20log%20directory%20specified%20must%20be%20an%20absolute%20directory.%0Alog_dir%20%3D%20%22%2Fvar%2Flog%2Fcrio%2Fpods%22%0A%0A%23%20Location%20for%20CRI-O%20to%20lay%20down%20the%20temporary%20version%20file%0Aversion_file%20%3D%20%22%2Fvar%2Frun%2Fcrio%2Fversion%22%0A%0A%23%20Location%20for%20CRI-O%20to%20lay%20down%20the%20persistent%20version%20file%0Aversion_file_persist%20%3D%20%22%2Fvar%2Flib%2Fcrio%2Fversion%22%0A%0A%23%20The%20crio.api%20table%20contains%20settings%20for%20the%20kubelet%2FgRPC%20interface.%0A%5Bcrio.api%5D%0A%0A%23%20Path%20to%20AF_LOCAL%20socket%20on%20which%20CRI-O%20will%20listen.%0Alisten%20%3D%20%22%2Fvar%2Frun%2Fcrio%2Fcrio.sock%22%0A%0A%23%20Host%20IP%20considered%20as%20the%20primary%20IP%20to%20use%20by%20CRI-O%20for%20things%20such%20as%20host%20network%20IP.%0Ahost_ip%20%3D%20%22%22%0A%0A%23%20IP%20address%20on%20which%20the%20stream%20server%20will%20listen.%0Astream_address%20%3D%20%22%22%0A%0A%23%20The%20port%20on%20which%20the%20stream%20server%20will%20listen.%0Astream_port%20%3D%20%2210010%22%0A%0A%23%20Enable%20encrypted%20TLS%20transport%20of%20the%20stream%20server.%0Astream_enable_tls%20%3D%20false%0A%0A%23%20Path%20to%20the%20x509%20certificate%20file%20used%20to%20serve%20the%20encrypted%20stream.%20This%0A%23%20file%20can%20change%2C%20and%20CRI-O%20will%20automatically%20pick%20up%20the%20changes%20within%205%0A%23%20minutes.%0Astream_tls_cert%20%3D%20%22%22%0A%0A%23%20Path%20to%20the%20key%20file%20used%20to%20serve%20the%20encrypted%20stream.%20This%20file%20can%0A%23%20change%20and%20CRI-O%20will%20automatically%20pick%20up%20the%20changes%20within%205%20minutes.%0Astream_tls_key%20%3D%20%22%22%0A%0A%23%20Path%20to%20the%20x509%20CA(s)%20file%20used%20to%20verify%20and%20authenticate%20client%0A%23%20communication%20with%20the%20encrypted%20stream.%20This%20file%20can%20change%20and%20CRI-O%20will%0A%23%20automatically%20pick%20up%20the%20changes%20within%205%20minutes.%0Astream_tls_ca%20%3D%20%22%22%0A%0A%23%20Maximum%20grpc%20send%20message%20size%20in%20bytes.%20If%20not%20set%20or%20%3C%3D0%2C%20then%20CRI-O%20will%20default%20to%2016%20*%201024%20*%201024.%0Agrpc_max_send_msg_size%20%3D%2016777216%0A%0A%23%20Maximum%20grpc%20receive%20message%20size.%20If%20not%20set%20or%20%3C%3D%200%2C%20then%20CRI-O%20will%20default%20to%2016%20*%201024%20*%201024.%0Agrpc_max_recv_msg_size%20%3D%2016777216%0A%0A%23%20The%20crio.runtime%20table%20contains%20settings%20pertaining%20to%20the%20OCI%20runtime%20used%0A%23%20and%20options%20for%20how%20to%20set%20up%20and%20manage%20the%20OCI%20runtime.%0A%5Bcrio.runtime%5D%0A%0A%23%20default_runtime%20is%20the%20_name_%20of%20the%20OCI%20runtime%20to%20be%20used%20as%20the%20default.%0A%23%20The%20name%20is%20matched%20against%20the%20runtimes%20map%20below.%0Adefault_runtime%20%3D%20%22runc%22%0A%0A%23%20If%20true%2C%20the%20runtime%20will%20not%20use%20pivot_root%2C%20but%20instead%20use%20MS_MOVE.%0Ano_pivot%20%3D%20false%0A%0A%23%20Path%20to%20the%20conmon%20binary%2C%20used%20for%20monitoring%20the%20OCI%20runtime.%0A%23%20Will%20be%20searched%20for%20using%20%24PATH%20if%20empty.%0Aconmon%20%3D%20%22%2Fusr%2Flibexec%2Fcrio%2Fconmon%22%0A%0A%23%20Cgroup%20setting%20for%20conmon%0Aconmon_cgroup%20%3D%20%22pod%22%0A%0A%23%20Environment%20variable%20list%20for%20the%20conmon%20process%2C%20used%20for%20passing%20necessary%0A%23%20environment%20variables%20to%20conmon%20or%20the%20runtime.%0Aconmon_env%20%3D%20%5B%0A%20%20%20%20%22PATH%3D%2Fusr%2Flocal%2Fsbin%3A%2Fusr%2Flocal%2Fbin%3A%2Fusr%2Fsbin%3A%2Fusr%2Fbin%3A%2Fsbin%3A%2Fbin%22%2C%0A%5D%0A%0Adefault_env%20%3D%20%5B%0A%20%20%20%20%22NSS_SDB_USE_CACHE%3Dno%22%2C%0A%5D%0A%0A%23%20If%20true%2C%20SELinux%20will%20be%20used%20for%20pod%20separation%20on%20the%20host.%0Aselinux%20%3D%20true%0A%0A%23%20Path%20to%20the%20seccomp.json%20profile%20which%20is%20used%20as%20the%20default%20seccomp%20profile%0A%23%20for%20the%20runtime.%20If%20not%20specified%2C%20then%20the%20internal%20default%20seccomp%20profile%0A%23%20will%20be%20used.%0Aseccomp_profile%20%3D%20%22%22%0A%0A%23%20Used%20to%20change%20the%20name%20of%20the%20default%20AppArmor%20profile%20of%20CRI-O.%20The%20default%0A%23%20profile%20name%20is%20%22crio-default-%22%20followed%20by%20the%20version%20string%20of%20CRI-O.%0Aapparmor_profile%20%3D%20%22crio-default%22%0A%0A%23%20Cgroup%20management%20implementation%20used%20for%20the%20runtime.%0Acgroup_manager%20%3D%20%22systemd%22%0A%0A%23%20List%20of%20default%20capabilities%20for%20containers.%20If%20it%20is%20empty%20or%20commented%20out%2C%0A%23%20only%20the%20capabilities%20defined%20in%20the%20containers%20json%20file%20by%20the%20user%2Fkube%0A%23%20will%20be%20added.%0Adefault_capabilities%20%3D%20%5B%0A%20%20%20%20%22CHOWN%22%2C%0A%20%20%20%20%22DAC_OVERRIDE%22%2C%0A%20%20%20%20%22FSETID%22%2C%0A%20%20%20%20%22FOWNER%22%2C%0A%20%20%20%20%22NET_RAW%22%2C%0A%20%20%20%20%22SETGID%22%2C%0A%20%20%20%20%22SETUID%22%2C%0A%20%20%20%20%22SETPCAP%22%2C%0A%20%20%20%20%22NET_BIND_SERVICE%22%2C%0A%20%20%20%20%22SYS_CHROOT%22%2C%0A%20%20%20%20%22KILL%22%2C%0A%5D%0A%0A%23%20List%20of%20default%20sysctls.%20If%20it%20is%20empty%20or%20commented%20out%2C%20only%20the%20sysctls%0A%23%20defined%20in%20the%20container%20json%20file%20by%20the%20user%2Fkube%20will%20be%20added.%0Adefault_sysctls%20%3D%20%5B%0A%5D%0A%0A%23%20List%20of%20additional%20devices.%20specified%20as%0A%23%20%22%3Cdevice-on-host%3E%3A%3Cdevice-on-container%3E%3A%3Cpermissions%3E%22%2C%20for%20example%3A%20%22--device%3D%2Fdev%2Fsdc%3A%2Fdev%2Fxvdc%3Arwm%22.%0A%23If%20it%20is%20empty%20or%20commented%20out%2C%20only%20the%20devices%0A%23%20defined%20in%20the%20container%20json%20file%20by%20the%20user%2Fkube%20will%20be%20added.%0Aadditional_devices%20%3D%20%5B%0A%5D%0A%0A%23%20Path%20to%20OCI%20hooks%20directories%20for%20automatically%20executed%20hooks.%0Ahooks_dir%20%3D%20%5B%0A%20%20%20%20%22%2Fetc%2Fcontainers%2Foci%2Fhooks.d%22%2C%0A%5D%0A%0A%23%20List%20of%20default%20mounts%20for%20each%20container.%20**Deprecated%3A**%20this%20option%20will%0A%23%20be%20removed%20in%20future%20versions%20in%20favor%20of%20default_mounts_file.%0Adefault_mounts%20%3D%20%5B%0A%5D%0A%0A%23%20Maximum%20number%20of%20processes%20allowed%20in%20a%20container.%0Apids_limit%20%3D%201024%0A%0A%23%20Maximum%20sized%20allowed%20for%20the%20container%20log%20file.%20Negative%20numbers%20indicate%0A%23%20that%20no%20size%20limit%20is%20imposed.%20If%20it%20is%20positive%2C%20it%20must%20be%20%3E%3D%208192%20to%0A%23%20match%2Fexceed%20conmon's%20read%20buffer.%20The%20file%20is%20truncated%20and%20re-opened%20so%20the%0A%23%20limit%20is%20never%20exceeded.%0Alog_size_max%20%3D%20-1%0A%0A%23%20Whether%20container%20output%20should%20be%20logged%20to%20journald%20in%20addition%20to%20the%20kuberentes%20log%20file%0Alog_to_journald%20%3D%20false%0A%0A%23%20Path%20to%20directory%20in%20which%20container%20exit%20files%20are%20written%20to%20by%20conmon.%0Acontainer_exits_dir%20%3D%20%22%2Fvar%2Frun%2Fcrio%2Fexits%22%0A%0A%23%20Path%20to%20directory%20for%20container%20attach%20sockets.%0Acontainer_attach_socket_dir%20%3D%20%22%2Fvar%2Frun%2Fcrio%22%0A%0A%23%20The%20prefix%20to%20use%20for%20the%20source%20of%20the%20bind%20mounts.%0Abind_mount_prefix%20%3D%20%22%22%0A%0A%23%20If%20set%20to%20true%2C%20all%20containers%20will%20run%20in%20read-only%20mode.%0Aread_only%20%3D%20false%0A%0A%23%20Changes%20the%20verbosity%20of%20the%20logs%20based%20on%20the%20level%20it%20is%20set%20to.%20Options%0A%23%20are%20fatal%2C%20panic%2C%20error%2C%20warn%2C%20info%2C%20and%20debug.%20This%20option%20supports%20live%0A%23%20configuration%20reload.%0Alog_level%20%3D%20%22info%22%0A%0A%23%20The%20UID%20mappings%20for%20the%20user%20namespace%20of%20each%20container.%20A%20range%20is%0A%23%20specified%20in%20the%20form%20containerUID%3AHostUID%3ASize.%20Multiple%20ranges%20must%20be%0A%23%20separated%20by%20comma.%0Auid_mappings%20%3D%20%22%22%0A%0A%23%20The%20GID%20mappings%20for%20the%20user%20namespace%20of%20each%20container.%20A%20range%20is%0A%23%20specified%20in%20the%20form%20containerGID%3AHostGID%3ASize.%20Multiple%20ranges%20must%20be%0A%23%20separated%20by%20comma.%0Agid_mappings%20%3D%20%22%22%0A%0A%23%20The%20minimal%20amount%20of%20time%20in%20seconds%20to%20wait%20before%20issuing%20a%20timeout%0A%23%20regarding%20the%20proper%20termination%20of%20the%20container.%0Actr_stop_timeout%20%3D%200%0A%0A%23%20ManageNetworkNSLifecycle%20determines%20whether%20we%20pin%20and%20remove%20network%20namespace%0A%23%20and%20manage%20its%20lifecycle.%0Amanage_network_ns_lifecycle%20%3D%20false%0A%0A%23%20The%20%22crio.runtime.runtimes%22%20table%20defines%20a%20list%20of%20OCI%20compatible%20runtimes.%0A%23%20The%20runtime%20to%20use%20is%20picked%20based%20on%20the%20runtime_handler%20provided%20by%20the%20CRI.%0A%23%20If%20no%20runtime_handler%20is%20provided%2C%20the%20runtime%20will%20be%20picked%20based%20on%20the%20level%0A%23%20of%20trust%20of%20the%20workload.%20Each%20entry%20in%20the%20table%20should%20follow%20the%20format%3A%0A%23%0A%23%5Bcrio.runtime.runtimes.runtime-handler%5D%0A%23%20%20runtime_path%20%3D%20%22%2Fpath%2Fto%2Fthe%2Fexecutable%22%0A%23%20%20runtime_type%20%3D%20%22oci%22%0A%23%20%20runtime_root%20%3D%20%22%2Fpath%2Fto%2Fthe%2Froot%22%0A%23%0A%23%20Where%3A%0A%23%20-%20runtime-handler%3A%20name%20used%20to%20identify%20the%20runtime%0A%23%20-%20runtime_path%20(optional%2C%20string)%3A%20absolute%20path%20to%20the%20runtime%20executable%20in%0A%23%20%20%20the%20host%20filesystem.%20If%20omitted%2C%20the%20runtime-handler%20identifier%20should%20match%0A%23%20%20%20the%20runtime%20executable%20name%2C%20and%20the%20runtime%20executable%20should%20be%20placed%0A%23%20%20%20in%20%24PATH.%0A%23%20-%20runtime_type%20(optional%2C%20string)%3A%20type%20of%20runtime%2C%20one%20of%3A%20%22oci%22%2C%20%22vm%22.%20If%0A%23%20%20%20omitted%2C%20an%20%22oci%22%20runtime%20is%20assumed.%0A%23%20-%20runtime_root%20(optional%2C%20string)%3A%20root%20directory%20for%20storage%20of%20containers%0A%23%20%20%20state.%0A%5Bcrio.runtime.runtimes.runc%5D%0Aruntime_path%20%3D%20%22%22%0Aruntime_type%20%3D%20%22oci%22%0Aruntime_root%20%3D%20%22%2Frun%2Frunc%22%0A%0A%23%20CRI-O%20reads%20its%20configured%20registries%20defaults%20from%20the%20system%20wide%0A%23%20containers-registries.conf(5)%20located%20in%20%2Fetc%2Fcontainers%2Fregistries.conf.%20If%0A%23%20you%20want%20to%20modify%20just%20CRI-O%2C%20you%20can%20change%20the%20registries%20configuration%20in%0A%23%20this%20file.%20Otherwise%2C%20leave%20insecure_registries%20and%20registries%20commented%20out%20to%0A%23%20use%20the%20system's%20defaults%20from%20%2Fetc%2Fcontainers%2Fregistries.conf.%0A%5Bcrio.image%5D%0A%0A%23%20Default%20transport%20for%20pulling%20images%20from%20a%20remote%20container%20storage.%0Adefault_transport%20%3D%20%22docker%3A%2F%2F%22%0A%0A%23%20The%20path%20to%20a%20file%20containing%20credentials%20necessary%20for%20pulling%20images%20from%0A%23%20secure%20registries.%20The%20file%20is%20similar%20to%20that%20of%20%2Fvar%2Flib%2Fkubelet%2Fconfig.json%0Aglobal_auth_file%20%3D%20%22%2Fvar%2Flib%2Fkubelet%2Fconfig.json%22%0A%0A%23%20The%20image%20used%20to%20instantiate%20infra%20containers.%0A%23%20This%20option%20supports%20live%20configuration%20reload.%0Apause_image%20%3D%20%22quay.io%2Fopenshift-release-dev%2Focp-v4.0-art-dev%40sha256%3Ae25caadca2b6afce179820345d99f271304573ca54ad3e27ba20cd2141f72fbb%22%0A%0A%23%20The%20path%20to%20a%20file%20containing%20credentials%20specific%20for%20pulling%20the%20pause_image%20from%0A%23%20above.%20The%20file%20is%20similar%20to%20that%20of%20%2Fvar%2Flib%2Fkubelet%2Fconfig.json%0A%23%20This%20option%20supports%20live%20configuration%20reload.%0Apause_image_auth_file%20%3D%20%22%2Fvar%2Flib%2Fkubelet%2Fconfig.json%22%0A%0A%23%20The%20command%20to%20run%20to%20have%20a%20container%20stay%20in%20the%20paused%20state.%0A%23%20When%20explicitly%20set%20to%20%22%22%2C%20it%20will%20fallback%20to%20the%20entrypoint%20and%20command%0A%23%20specified%20in%20the%20pause%20image.%20When%20commented%20out%2C%20it%20will%20fallback%20to%20the%0A%23%20default%3A%20%22%2Fpause%22.%20This%20option%20supports%20live%20configuration%20reload.%0Apause_command%20%3D%20%22%2Fusr%2Fbin%2Fpod%22%0A%0A%23%20Path%20to%20the%20file%20which%20decides%20what%20sort%20of%20policy%20we%20use%20when%20deciding%0A%23%20whether%20or%20not%20to%20trust%20an%20image%20that%20we've%20pulled.%20It%20is%20not%20recommended%20that%0A%23%20this%20option%20be%20used%2C%20as%20the%20default%20behavior%20of%20using%20the%20system-wide%20default%0A%23%20policy%20(i.e.%2C%20%2Fetc%2Fcontainers%2Fpolicy.json)%20is%20most%20often%20preferred.%20Please%0A%23%20refer%20to%20containers-policy.json(5)%20for%20more%20details.%0Asignature_policy%20%3D%20%22%22%0A%0A%23%20Controls%20how%20image%20volumes%20are%20handled.%20The%20valid%20values%20are%20mkdir%2C%20bind%20and%0A%23%20ignore%3B%20the%20latter%20will%20ignore%20volumes%20entirely.%0Aimage_volumes%20%3D%20%22mkdir%22%0A%0A%23%20The%20crio.network%20table%20containers%20settings%20pertaining%20to%20the%20management%20of%0A%23%20CNI%20plugins.%0A%5Bcrio.network%5D%0A%23%20Path%20to%20the%20directory%20where%20CNI%20configuration%20files%20are%20located.%0Anetwork_dir%20%3D%20%22%2Fetc%2Fkubernetes%2Fcni%2Fnet.d%2F%22%0A%0A%23%20Paths%20to%20directories%20where%20CNI%20plugin%20binaries%20are%20located.%0Aplugin_dirs%20%3D%20%5B%0A%20%20%20%20%22%2Fvar%2Flib%2Fcni%2Fbin%22%2C%0A%20%20%20%20%22%2Fusr%2Flibexec%2Fcni%22%2C%0A%5D%0A%0A%23%20A%20necessary%20configuration%20for%20Prometheus%20based%20metrics%20retrieval%0A%5Bcrio.metrics%5D%0A%0A%23%20Globally%20enable%20or%20disable%20metrics%20support.%0Aenable_metrics%20%3D%20true%0A%0A%23%20The%20port%20on%20which%20the%20metrics%20server%20will%20listen.%0Ametrics_port%20%3D%209537%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/crio/crio.conf
+      - contents:
+          source: data:,%7B%0A%20%20%20%20%22default%22%3A%20%5B%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22type%22%3A%20%22insecureAcceptAnything%22%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22transports%22%3A%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%22docker-daemon%22%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22%22%3A%20%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%7D
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/containers/policy.json
+      - contents:
+          source: data:,
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/kubernetes/cloud.conf
+      - contents:
+          source: data:,kind%3A%20KubeletConfiguration%0AapiVersion%3A%20kubelet.config.k8s.io%2Fv1beta1%0Aauthentication%3A%0A%20%20x509%3A%0A%20%20%20%20clientCAFile%3A%20%2Fetc%2Fkubernetes%2Fkubelet-ca.crt%0A%20%20anonymous%3A%0A%20%20%20%20enabled%3A%20false%0AcgroupDriver%3A%20systemd%0AcgroupRoot%3A%20%2F%0AclusterDNS%3A%0A%20%20-%20172.30.0.10%0AclusterDomain%3A%20cluster.local%0AcontainerLogMaxSize%3A%2050Mi%0AmaxPods%3A%20250%0AkubeAPIQPS%3A%2050%0AkubeAPIBurst%3A%20100%0ArotateCertificates%3A%20true%0AserializeImagePulls%3A%20false%0AstaticPodPath%3A%20%2Fetc%2Fkubernetes%2Fmanifests%0AsystemCgroups%3A%20%2Fsystem.slice%0AsystemReserved%3A%0A%20%20cpu%3A%20500m%0A%20%20memory%3A%201Gi%0A%20%20ephemeral-storage%3A%201Gi%0AfeatureGates%3A%0A%20%20LegacyNodeRoleBehavior%3A%20false%0A%20%20NodeDisruptionExclusion%3A%20true%0A%20%20RotateKubeletServerCertificate%3A%20true%0A%20%20SCTPSupport%3A%20true%0A%20%20ServiceNodeExclusion%3A%20true%0A%20%20SupportPodPidsLimit%3A%20true%0AserverTLSBootstrap%3A%20true%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/kubernetes/kubelet.conf
+      - contents:
+          source: data:text/plain,unqualified-search-registries%20%3D%20%5B%22registry.access.redhat.com%22%2C%20%22docker.io%22%5D%0A%0A%5B%5Bregistry%5D%5D%0A%20%20prefix%20%3D%20%22%22%0A%20%20location%20%3D%20%22registry.ocp4.rh.lab%3A5000%22%0A%20%20insecure%20%3D%20true%0A
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/containers/registries.conf
+      - contents:
+          source: data:text/plain,%7B%22default%22%3A%5B%7B%22type%22%3A%22reject%22%7D%5D%2C%22transports%22%3A%7B%22atomic%22%3A%7B%22image-registry.openshift-image-registry.svc%3A5000%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%2C%22quay.io%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%2C%22registry.access.redhat.com%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%2C%22registry.ocp4.rh.lab%3A5000%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%2C%22registry.redhat.io%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%7D%2C%22docker%22%3A%7B%22image-registry.openshift-image-registry.svc%3A5000%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%2C%22quay.io%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%2C%22registry.access.redhat.com%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%2C%22registry.ocp4.rh.lab%3A5000%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%2C%22registry.redhat.io%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%7D%2C%22docker-daemon%22%3A%7B%22%22%3A%5B%7B%22type%22%3A%22insecureAcceptAnything%22%7D%5D%7D%7D%7D
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/containers/policy.json
+      - contents:
+          source: data:text/plain;charset=utf-8;base64,b3B0aW9ucyBrdm0taW50ZWwgbmVzdGVkPTEKb3B0aW9ucyBrdm0taW50ZWwgZW5hYmxlX3NoYWRvd192bWNzPTEKb3B0aW9ucyBrdm0taW50ZWwgZW5hYmxlX2FwaWN2PTEKb3B0aW9ucyBrdm0taW50ZWwgZXB0PTEgICAgCg==
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/modprobe.d/cnv-kvm.conf
+    systemd:
+      units:
+      - contents: |
+          [Unit]
+          Description=Machine Config Daemon Firstboot (4.2 bootimage)
+          # Make sure it runs only on OSTree booted system
+          ConditionPathExists=/run/ostree-booted
+          BindsTo=ignition-firstboot-complete.service
+          ConditionPathExists=/etc/ignition-machine-config-encapsulated.json
+          # Note the opposite of this in machine-config-daemon-firstboot
+          ConditionPathExists=!/sysroot/.coreos-aleph-version.json
+          After=ignition-firstboot-complete.service
+          Before=kubelet.service
+
+          [Service]
+          # Need oneshot to delay kubelet
+          Type=oneshot
+          ExecStart=/usr/libexec/machine-config-daemon pivot
+
+          [Install]
+          WantedBy=multi-user.target
+        enabled: true
+        name: machine-config-daemon-firstboot-v42.service
+      - contents: |
+          [Unit]
+          Description=Machine Config Daemon Firstboot
+          # Make sure it runs only on OSTree booted system
+          ConditionPathExists=/run/ostree-booted
+          BindsTo=ignition-firstboot-complete.service
+          ConditionPathExists=/etc/ignition-machine-config-encapsulated.json
+          # We only want to run on 4.3 clusters and above; this came from
+          # https://github.com/coreos/coreos-assembler/pull/768
+          ConditionPathExists=/sysroot/.coreos-aleph-version.json
+          After=ignition-firstboot-complete.service
+          Before=kubelet.service
+
+          [Service]
+          # Need oneshot to delay kubelet
+          Type=oneshot
+          ExecStart=/usr/libexec/machine-config-daemon firstboot-complete-machineconfig
+
+          [Install]
+          WantedBy=multi-user.target
+        enabled: true
+        name: machine-config-daemon-firstboot.service
+      - contents: |
+          [Unit]
+          Description=Machine Config Daemon Initial
+          # This only applies to ostree (MCD) systems;
+          # see also https://github.com/openshift/machine-config-operator/issues/1046
+          ConditionPathExists=/run/ostree-booted
+          ConditionPathExists=/etc/pivot/image-pullspec
+          # If pivot exists, defer to it.  Note similar code in update.go
+          ConditionPathExists=!/usr/lib/systemd/system/pivot.service
+          After=ignition-firstboot-complete.service
+          Before=kubelet.service
+
+          [Service]
+          # Need oneshot to delay kubelet
+          Type=oneshot
+          # TODO add --from-etc-pullspec after ratcheting
+          ExecStart=/usr/libexec/machine-config-daemon pivot
+
+          [Install]
+          WantedBy=multi-user.target
+        enabled: false
+        name: machine-config-daemon-host.service
+      - contents: |
+          [Unit]
+          Description=Kubernetes Kubelet
+          Wants=rpc-statd.service network-online.target crio.service
+          After=network-online.target crio.service
+
+          [Service]
+          Type=notify
+          ExecStartPre=/bin/mkdir --parents /etc/kubernetes/manifests
+          ExecStartPre=/bin/rm -f /var/lib/kubelet/cpu_manager_state
+          Environment="KUBELET_LOG_LEVEL=3"
+          EnvironmentFile=/etc/os-release
+          EnvironmentFile=-/etc/kubernetes/kubelet-workaround
+          EnvironmentFile=-/etc/kubernetes/kubelet-env
+
+          ExecStart=/usr/bin/hyperkube \
+              kubelet \
+                --config=/etc/kubernetes/kubelet.conf \
+                --bootstrap-kubeconfig=/etc/kubernetes/kubeconfig \
+                --kubeconfig=/var/lib/kubelet/kubeconfig \
+                --container-runtime=remote \
+                --container-runtime-endpoint=/var/run/crio/crio.sock \
+                --runtime-cgroups=/system.slice/crio.service \
+                --node-labels=node-role.kubernetes.io/worker,node.openshift.io/os_id=${ID} \
+                --minimum-container-ttl-duration=6m0s \
+                --volume-plugin-dir=/etc/kubernetes/kubelet-plugins/volume/exec \
+                --cloud-provider= \
+                 \
+                --v=${KUBELET_LOG_LEVEL}
+
+          Restart=always
+          RestartSec=10
+
+          [Install]
+          WantedBy=multi-user.target
+        enabled: true
+        name: kubelet.service
+      - contents: |
+          [Unit]
+          Description=Set time-zone to Europe/Moscow
+          Before=kubelet.service
+          [Service]
+          # Need oneshot to delay kubelet
+          Type=oneshot
+          ExecStart=/usr/bin/timedatectl set-timezone Europe/Moscow
+          [Install]
+          WantedBy=multi-user.target
+        enabled: true
+        name: mosocow-timezone.service
+  fips: false
+  kernelArguments: []
+  kernelType: default
+  osImageURL: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:d0caedb5ce4fdfe1cdb6bd122ff3e676356fb8be716508c42a00db04126d9c65

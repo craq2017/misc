@@ -1,0 +1,39 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  creationTimestamp: '2020-02-07T08:15:04Z'
+  generation: 9
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: 99-worker-time-zone
+  resourceVersion: '18598642'
+  selfLink: >-
+    /apis/machineconfiguration.openshift.io/v1/machineconfigs/99-worker-time-zone
+  uid: cafe35b4-d1f6-4edb-8927-d3d9f8f2a180
+spec:
+  config:
+    ignition:
+      config: {}
+      security:
+        tls: {}
+      timeouts: {}
+      version: 2.2.0
+    networkd: {}
+    passwd: {}
+    storage:
+      file: null
+    systemd:
+      units:
+        - contents: |
+            [Unit]
+            Description=Set time-zone to Europe/Moscow
+            Before=kubelet.service
+            [Service]
+            # Need oneshot to delay kubelet
+            Type=oneshot
+            ExecStart=/usr/bin/timedatectl set-timezone Europe/Berlin
+            [Install]
+            WantedBy=multi-user.target
+          enabled: true
+          name: mosocow-timezone.service
+

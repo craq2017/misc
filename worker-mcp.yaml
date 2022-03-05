@@ -1,0 +1,40 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfigPool
+metadata:
+  generation: 1
+  labels:
+    machineconfiguration.openshift.io/mco-built-in: ""
+  name: worker
+  selfLink: /apis/machineconfiguration.openshift.io/v1/machineconfigpools/worker
+spec:
+  configuration:
+    name: rendered-worker-dd3e05b2916b6929bfcd199b58474931
+    source:
+    - apiVersion: machineconfiguration.openshift.io/v1
+      kind: MachineConfig
+      name: 00-worker
+    - apiVersion: machineconfiguration.openshift.io/v1
+      kind: MachineConfig
+      name: 01-worker-container-runtime
+    - apiVersion: machineconfiguration.openshift.io/v1
+      kind: MachineConfig
+      name: 01-worker-kubelet
+    - apiVersion: machineconfiguration.openshift.io/v1
+      kind: MachineConfig
+      name: 99-worker-f868f742-299d-4b12-880e-cd4e43c5abb0-registries
+    - apiVersion: machineconfiguration.openshift.io/v1
+      kind: MachineConfig
+      name: 99-worker-ssh
+    - apiVersion: machineconfiguration.openshift.io/v1
+      kind: MachineConfig
+      name: 99-worker-time-zone
+    - apiVersion: machineconfiguration.openshift.io/v1
+      kind: MachineConfig
+      name: worker-nested-virtualization
+  machineConfigSelector:
+    matchLabels:
+      machineconfiguration.openshift.io/role: worker
+  nodeSelector:
+    matchLabels:
+      node-role.kubernetes.io/worker: ""
+  paused: false

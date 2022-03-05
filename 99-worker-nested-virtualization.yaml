@@ -1,0 +1,25 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: worker-nested-virtualization
+spec:
+  config:
+    ignition:
+      config: {}
+      security:
+        tls: {}
+      timeouts: {}
+      version: 2.2.0
+    networkd: {}
+    passwd: {}
+    storage:
+      files:
+      - contents:
+          source: data:text/plain;charset=utf-8;base64,ICAgIG9wdGlvbnMga3ZtLWludGVsIG5lc3RlZD0xCiAgICBvcHRpb25zIGt2bS1pbnRlbCBlbmFibGVfc2hhZG93X3ZtY3M9MQogICAgb3B0aW9ucyBrdm0taW50ZWwgZW5hYmxlX2FwaWN2PTEKICAgIG9wdGlvbnMga3ZtLWludGVsIGVwdD0xICAgIAo=
+          verification: {}
+        filesystem: root
+        mode: 420
+        path: /etc/modprobe.d/cnv-kvm.conf
+  osImageURL: ""
